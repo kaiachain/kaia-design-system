@@ -1,46 +1,118 @@
-# Getting Started with Create React App
+# Kaia Design System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is the Kaia Design System built with React and styled-components, using Yarn for package management and building the project. The kit includes a variety of reusable UI components and SVG icons.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **React Components**: Modular and reusable React components.
+- **Styled-Components**: Utilizes styled-components for styling.
+- **SVG Icons**: Easy inclusion and use of SVG icons with automatic imports.
+- **TypeScript**: Strongly typed components using TypeScript.
 
-### `npm start`
+## Getting Started
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Prerequisites
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- Node.js and Yarn should be installed on your machine.
 
-### `npm test`
+### Installation
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Clone the repository and install dependencies.
 
-### `npm run build`
+```sh
+git clone https://github.com/kaiachain/kaia-design-system
+cd kaia-design-system
+yarn install
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Building the Project
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+To build the project, use the following command:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```sh
+yarn build
+```
 
-### `npm run eject`
+This will generate the `dist` folder containing the built files: `index.js`, `index.js.map`, `index.esm.js`, and `index.esm.js.map`.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Usage
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### Importing Components
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+To use a component from the design system, import it into your project:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```tsx
+import React from 'react';
+import { Button } from 'kaia-design-system';
 
-## Learn More
+const App = () => (
+  <div>
+    <Button>Click Me</Button>
+  </div>
+);
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+export default App;
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+#### Using SVG Icons
+
+The design system includes a variety of SVG icons. You can import and use them as follows:
+
+```tsx
+import React from 'react';
+import Icons from 'kaia-design-system/icons';
+
+const IconComponent: React.FC = () => (
+  <div>
+    <Icons.AddressBook />
+    <Icons.Gift />
+    {/* Other icons can be used similarly */}
+  </div>
+);
+
+export default IconComponent;
+```
+
+### Adding New SVG Icons
+
+To add new SVG icons, place your `.svg` files in the `src/icons` directory or its subdirectories. Then, run the `generateIcons.js` script to automatically generate the imports and exports for the icons.
+
+```sh
+node generateIcons.js
+```
+
+### Development
+
+For development, use the following command to start a development server with hot reloading:
+
+```sh
+yarn start
+```
+
+### Testing
+
+To run tests, use the following command:
+
+```sh
+yarn test
+```
+
+### Scripts
+
+- `yarn build`: Builds the project for production.
+- `yarn start`: Starts the development server.
+- `yarn test`: Runs the test suite.
+- `node generateIcons.js`: Generates icon imports and exports.
+
+## License
+
+This project is licensed under the MIT License.
+
+## Contributing
+
+Contributions are welcome! Please open an issue or submit a pull request.
+
+## Acknowledgments
+
+Special thanks to the open-source community for providing valuable tools and libraries that made this project possible.
+
