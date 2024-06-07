@@ -1,14 +1,14 @@
-import "./App.css";
-
-import { KaIcon, KaButton } from "kaia-design-system";
+import './App.css'
+import { KaThemeProvider, KaButton, KaLabel, KaIcon } from 'kaia-design-system'
 
 function App() {
   return (
-    <>
-      <KaIcon.AddressBook stroke="red" />
-      <KaButton>Button</KaButton>
-    </>
-  );
+    <KaThemeProvider theme="dark">
+      <KaIcon.SearchNormal stroke="blue" />
+      <KaLabel color="red" type="solid" text="Label Text" />
+      <KaButton onClick={() => alert('Button clicked')}>Button</KaButton>
+    </KaThemeProvider>
+  )
 }
 
-export default App;
+export default App

@@ -4,6 +4,7 @@ const { nodeResolve } = require("@rollup/plugin-node-resolve");
 const commonjs = require("@rollup/plugin-commonjs");
 const peerDepsExternal = require("rollup-plugin-peer-deps-external");
 const svgr = require("@svgr/rollup");
+const terser = require("@rollup/plugin-terser");
 
 module.exports = {
   input: "src/index.ts",
@@ -12,18 +13,11 @@ module.exports = {
       file: "dist/index.js",
       format: "cjs",
       sourcemap: true,
-      sourcemapPathTransform: (relativePath) => {
-        // 경로를 재설정하여 실제 파일 위치와 일치시키기
-        return relativePath.replace(/^(\.\.\/)+/, "");
-      },
     },
     {
       file: "dist/index.esm.js",
       format: "esm",
       sourcemap: true,
-      sourcemapPathTransform: (relativePath) => {
-        return relativePath.replace(/^(\.\.\/)+/, "");
-      },
     },
   ],
   external: ["react", "react-dom", "styled-components"],
@@ -34,13 +28,15 @@ module.exports = {
     typescript({
       tsconfig: "./tsconfig.json",
       sourceMap: true,
+      declaration: true,
+      declarationDir: "./dist/types",
     }),
     babel({
       exclude: "node_modules/**",
       extensions: [".js", ".jsx", ".ts", ".tsx"],
       babelHelpers: "bundled",
-      sourceMaps: true,
     }),
     svgr(),
+    terser(),
   ],
 };

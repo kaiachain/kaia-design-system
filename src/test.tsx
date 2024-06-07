@@ -1,13 +1,12 @@
-import { KaIcon } from "./index";
+import KaIcon from '../src/icons'
+import { ReactElement } from 'react'
 
-import { ReactElement } from "react";
-
-const Test = (): ReactElement => {
+const Test = () => {
   return (
     <div>
-      <KaIcon.AirplaneModeNormal stroke="blue" />
+      <KaIcon.SearchNormal stroke="blue" />
     </div>
-  );
-};
+  )
+}
 
-export default Test;
+export default Test
