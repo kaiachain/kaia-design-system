@@ -1,7 +1,7 @@
-import styled, { ThemeProvider } from "styled-components";
-import { darkTheme, lightTheme } from "../styles/theme";
+import styled, { ThemeProvider } from 'styled-components'
+import { darkTheme, lightTheme } from '../styles/theme'
 
-export { lightTheme, darkTheme };
+export { lightTheme, darkTheme }
 
 const StyledThemeProvider = styled.div`
   --Radius-half: 0.25rem;
@@ -28,16 +28,16 @@ const StyledThemeProvider = styled.div`
   --Spacing-4: 1rem;
   --Spacing-5: 1.25rem;
   --Spacing-6: 1.5rem;
-`;
+`
 
 export const KaThemeProvider: React.FC<{
-  theme: "light" | "dark";
-  children: React.ReactNode;
+  theme: 'light' | 'dark'
+  children: React.ReactNode
 }> = ({ theme, children }) => {
-  const selectedTheme = theme === "light" ? lightTheme : darkTheme;
+  const selectedTheme = theme === 'light' ? lightTheme : darkTheme
   return (
     <StyledThemeProvider>
       <ThemeProvider theme={selectedTheme}>{children}</ThemeProvider>
     </StyledThemeProvider>
-  );
-};
+  )
+}

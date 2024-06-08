@@ -11,8 +11,7 @@
     "declarationDir": "./dist/types",
     "emitDeclarationOnly": true,
     "esModuleInterop": true,
-    "skipLibCheck": true,
-    "baseUrl": "src"
+    "skipLibCheck": true
   },
   "include": ["src", "declarations.d.ts"]
 }

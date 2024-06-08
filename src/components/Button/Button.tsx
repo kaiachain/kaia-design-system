@@ -1,9 +1,10 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react'
+import styled from 'styled-components'
+import { themeFunc } from '../../styles'
 
 const StyledButton = styled.button`
-  background-color: ${(props) => props.theme.greyscale._0};
-  color: ${(props) => props.theme.greyscale_4};
+  background-color: ${themeFunc('gray', '0')};
+  color: ${(props) => props.theme.gray_4};
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
@@ -11,17 +12,17 @@ const StyledButton = styled.button`
   font-size: 16px;
 
   &:hover {
-    background-color: ${(props) => props.theme.elevation._1};
+    background-color: ${themeFunc('gray', '1')};
   }
-`;
+`
 
 interface ButtonProps {
-  onClick: () => void;
-  children: React.ReactNode;
+  onClick: () => void
+  children: React.ReactNode
 }
 
 const Button: React.FC<ButtonProps> = ({ onClick, children }) => {
-  return <StyledButton onClick={onClick}>{children}</StyledButton>;
-};
+  return <StyledButton onClick={onClick}>{children}</StyledButton>
+}
 
-export default Button;
+export default Button

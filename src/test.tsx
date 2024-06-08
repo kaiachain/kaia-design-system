@@ -1,5 +1,4 @@
 import KaIcon from '../src/icons'
-import { ReactElement } from 'react'
 
 const Test = () => {
   return (
