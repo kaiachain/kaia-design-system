@@ -230,4 +230,4 @@ export const font = {
   `,
 }
 
-export type FontType = keyof typeof font
+export type KaFontType = keyof typeof font

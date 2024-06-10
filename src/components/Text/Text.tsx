@@ -1,9 +1,9 @@
 import styled from 'styled-components'
 
 import { HTMLAttributes, ReactElement, ReactNode } from 'react'
-import { themeFunc, font, FontType } from '../../styles'
+import { themeFunc, font, KaFontType } from '../../styles'
 
-const StyledText = styled.div<{ type: FontType }>`
+const StyledText = styled.div<{ type: KaFontType }>`
   color: ${themeFunc('gray', '0')};
   font-stretch: normal;
   font-style: normal;
@@ -14,7 +14,7 @@ const StyledText = styled.div<{ type: FontType }>`
 `
 
 export type KaTextProps = {
-  fontType: FontType
+  fontType: KaFontType
   children: ReactNode
   color?: string
   inBorder?: boolean

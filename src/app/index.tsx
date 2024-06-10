@@ -28,6 +28,8 @@ const StyledThemeProvider = styled.div`
   --Spacing-4: 1rem;
   --Spacing-5: 1.25rem;
   --Spacing-6: 1.5rem;
+
+  height: 100%;
 `
 
 export const KaThemeProvider: React.FC<{

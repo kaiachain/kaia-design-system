@@ -2,10 +2,11 @@ import { ReactElement } from 'react'
 import styled from 'styled-components'
 
 import { KaText } from '../Text/Text'
-import { FontType } from '../../styles'
+import { KaFontType } from '../../styles'
 import { useKaTheme } from '../../hooks'
 
 const StyledContainer = styled.div`
+  width: fit-content;
   display: inline-flex;
   height: var(--Sizing-4, 20px);
   padding: 0 var(--Spacing-2, 8px);
@@ -33,7 +34,7 @@ export const KaLabel = ({
 }: KaLabelProps): ReactElement => {
   const { getTheme } = useKaTheme()
 
-  let fontType: FontType = `EN/body/${size}_400`
+  let fontType: KaFontType = `EN/body/${size}_400`
   let height
   if (size === 'xs') {
     height = 'var(--Sizing-4, 20px)'
