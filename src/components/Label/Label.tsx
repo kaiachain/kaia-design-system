@@ -34,20 +34,20 @@ export const KaLabel = ({
 }: KaLabelProps): ReactElement => {
   const { getTheme } = useKaTheme()
 
-  let fontType: KaFontType = `EN/body/${size}_400`
+  let fontType: KaFontType = `body/${size}_400`
   let height
   if (size === 'xs') {
     height = 'var(--Sizing-4, 20px)'
-    fontType = 'EN/body/xs_700'
+    fontType = 'body/xs_700'
   } else if (size === 'sm') {
     height = 'var(--Sizing-5, 24px)'
-    fontType = 'EN/body/sm_600'
+    fontType = 'body/sm_600'
   } else if (size === 'md') {
     height = 'var(--Sizing-6, 28px)'
-    fontType = 'EN/body/md_600'
+    fontType = 'body/md_600'
   } else if (size === 'lg') {
     height = 'var(--Sizing-7, 32px)'
-    fontType = 'EN/body/lg_600'
+    fontType = 'body/lg_600'
   }
 
   let backgroundColor = ''

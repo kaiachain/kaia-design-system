@@ -7,6 +7,7 @@
   "module": "dist/index.esm.js",
   "types": "dist/types/index.d.ts",
   "scripts": {
+    "preinstall": "node -e 'if(!/yarn\\.js$/.test(process.env.npm_execpath))throw new Error(\"Only yarn allowed\")'",
     "build": "rollup -c rollup.config.cjs",
     "prepublishOnly": "yarn build"
   },

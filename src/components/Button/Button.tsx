@@ -90,19 +90,19 @@ export const KaButton = ({
     BtnComp = StyledRedLineButton
   }
 
-  let fontType: KaFontType = 'EN/body/sm_700'
+  let fontType: KaFontType = 'body/sm_700'
   let height
   if (size === 'sm') {
-    fontType = 'EN/body/xs_700'
+    fontType = 'body/xs_700'
     height = 'var(--Sizing-7, 32px)'
   } else if (size === 'md') {
-    fontType = 'EN/body/md_700'
+    fontType = 'body/md_700'
     height = 'var(--Sizing-8, 40px)'
   } else if (size === 'lg') {
-    fontType = 'EN/body/lg_700'
+    fontType = 'body/lg_700'
     height = 'var(--Sizing-9, 48px)'
   } else if (size === 'xl') {
-    fontType = 'EN/body/xl_700'
+    fontType = 'body/xl_700'
     height = 'var(--Sizing-10, 56px)'
   }
 

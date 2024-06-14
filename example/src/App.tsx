@@ -8,6 +8,7 @@ import {
   KaIcon,
   KaText,
   useKaTheme,
+  KaRadio,
 } from 'kaia-design-system'
 
 import './App.css'
@@ -36,24 +37,24 @@ const Home = ({
   return (
     <StyledContainer style={{ backgroundColor: getTheme('gray', '10') }}>
       <StyledSection>
-        <KaText fontType="EN/title/lg_700">Toggle Theme</KaText>
-
-        <KaButton
-          onClick={(): void => {
-            setTheme(theme === 'light' ? 'dark' : 'light')
-          }}
-        >
-          {theme}
-        </KaButton>
+        <KaText fontType="title/lg_700">Toggle Theme</KaText>
+        <label>
+          <KaRadio selected={theme} value="light" onClick={setTheme} />
+          <KaText fontType="body/md_600">Light</KaText>
+        </label>
+        <label>
+          <KaRadio size="md" selected={theme} value="dark" onClick={setTheme} />
+          <KaText fontType="body/md_600">Dark</KaText>
+        </label>
       </StyledSection>
       <StyledSection>
-        <KaText fontType="EN/title/lg_700">Icons</KaText>
+        <KaText fontType="title/lg_700">Icons</KaText>
 
         <KaIcon.SearchNormal stroke="blue" />
         <KaIcon.Chevron_bottom stroke="blue" />
       </StyledSection>
       <StyledSection>
-        <KaText fontType="EN/title/lg_700">Labels</KaText>
+        <KaText fontType="title/lg_700">Labels</KaText>
 
         <KaLabel size="md" color="red" text="text" type="solid" />
         <KaLabel size="md" color="red" text="text" type="pale" />
@@ -61,7 +62,7 @@ const Home = ({
         <KaLabel size="md" color="red" text="text" type="paleBorder" />
       </StyledSection>
       <StyledSection>
-        <KaText fontType="EN/title/lg_700">Buttons</KaText>
+        <KaText fontType="title/lg_700">Buttons</KaText>
 
         <KaButton size="sm" onClick={() => alert('?')}>
           Button
