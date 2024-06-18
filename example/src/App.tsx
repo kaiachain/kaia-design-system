@@ -9,6 +9,7 @@ import {
   KaText,
   useKaTheme,
   KaRadio,
+  KaCheckBox,
 } from 'kaia-design-system'
 
 import './App.css'
@@ -23,6 +24,12 @@ const StyledSection = styled.section`
   flex-direction: column;
   row-gap: 10px;
   padding-bottom: 10px;
+`
+
+const StyledRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  column-gap: 10px;
 `
 
 const Home = ({
@@ -48,10 +55,27 @@ const Home = ({
         </label>
       </StyledSection>
       <StyledSection>
+        <KaText fontType="title/lg_700">CheckBox</KaText>
+
+        <StyledRow>
+          <KaCheckBox size="sm" value="1" onClick={() => {}} />
+          <KaCheckBox checked size="sm" value="1" onClick={() => {}} />
+          <KaCheckBox size="md" value="1" onClick={() => {}} />
+          <KaCheckBox checked size="md" value="1" onClick={() => {}} />
+          <KaCheckBox size="lg" value="1" onClick={() => {}} />
+          <KaCheckBox checked size="lg" value="1" onClick={() => {}} />
+          <KaCheckBox disabled size="lg" value="1" onClick={() => {}} />
+          <KaCheckBox disabled checked size="lg" value="1" onClick={() => {}} />
+        </StyledRow>
+      </StyledSection>
+      <StyledSection>
         <KaText fontType="title/lg_700">Icons</KaText>
 
-        <KaIcon.SearchNormal stroke="blue" />
-        <KaIcon.Chevron_bottom stroke="blue" />
+        <KaIcon.SearchNormal style={{ width: 20, height: 30 }} stroke="blue" />
+        <KaIcon.Chevron_bottom
+          style={{ width: 30, height: 20 }}
+          stroke="blue"
+        />
       </StyledSection>
       <StyledSection>
         <KaText fontType="title/lg_700">Labels</KaText>

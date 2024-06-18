@@ -10,11 +10,24 @@ const RadioInput = styled.input<{ size: 'sm' | 'md' }>`
   border: 1px solid;
   border-color: ${themeFunc('brand', '5')};
   background-color: ${themeFunc('elevation', '7')};
-  margin-right: 8px;
   outline: none;
   cursor: pointer;
 
-  &:checked {
+  &:disabled {
+    background-color: ${themeFunc('elevation', '8')};
+    border-color: ${themeFunc('elevation', '8')};
+    cursor: not-allowed;
+  }
+
+  &:disabled:checked {
+    border-width: ${({ size }) => (size === 'sm' ? '4px' : '5px')};
+  }
+
+  &:hover:not(:disabled) {
+    background-color: ${themeFunc('elevation', '8')};
+  }
+
+  &:checked:not(:disabled) {
     border: ${({ size }) => (size === 'sm' ? '4px' : '5px')} solid;
     border-color: ${themeFunc('brand', '5')};
     background-color: ${themeFunc('gray', '10')};
@@ -26,6 +39,7 @@ export type KaRadioProps<T> = {
   value: T
   onClick: (value: T) => void
   size?: 'sm' | 'md'
+  disabled?: boolean
 }
 
 export const KaRadio = <T,>({
@@ -33,9 +47,11 @@ export const KaRadio = <T,>({
   value,
   selected,
   size = 'sm',
+  disabled,
 }: KaRadioProps<T>): ReactElement => {
   return (
     <RadioInput
+      disabled={disabled}
       size={size}
       type="radio"
       checked={selected === value}

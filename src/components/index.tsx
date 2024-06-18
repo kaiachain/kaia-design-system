@@ -1,4 +1,5 @@
 export * from './Button/Button'
 export * from './Label/Label'
 export * from './Text/Text'
-export * from './Input/Radio'
+export * from './Radio/Radio'
+export * from './CheckBox/CheckBox'

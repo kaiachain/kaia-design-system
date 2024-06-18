@@ -7,7 +7,7 @@ export function hexToRGBA(hex: string, opacity?: number): string {
   const g = parseInt(hex.substring(2, 4), 16)
   const b = parseInt(hex.substring(4, 6), 16)
   const a = parseInt(hex.substring(6, 8) || '0', 16) / 255
-  console.log('a', hex, a)
+
   // Return the RGBA string
   return `rgba(${r}, ${g}, ${b}, ${a || opacity})`
 }
