@@ -1,8 +1,16 @@
 import { ReactElement } from 'react'
-import styled from 'styled-components'
+import styled from '@emotion/styled'
 import { themeFunc } from '../../styles'
 
-const RadioInput = styled.input<{ size: 'sm' | 'md' }>`
+export type KaRadioProps<T> = {
+  selected?: T
+  value: T
+  onClick: (value: T) => void
+  size?: 'sm' | 'md'
+  disabled?: boolean
+}
+
+const RadioInput = styled.input<any>`
   appearance: none;
   width: ${({ size }) => (size === 'sm' ? '12px' : '16px')};
   height: ${({ size }) => (size === 'sm' ? '12px' : '16px')};
@@ -34,14 +42,6 @@ const RadioInput = styled.input<{ size: 'sm' | 'md' }>`
   }
 `
 
-export type KaRadioProps<T> = {
-  selected?: T
-  value: T
-  onClick: (value: T) => void
-  size?: 'sm' | 'md'
-  disabled?: boolean
-}
-
 export const KaRadio = <T,>({
   onClick,
   value,
@@ -54,6 +54,7 @@ export const KaRadio = <T,>({
       disabled={disabled}
       size={size}
       type="radio"
+      readOnly
       checked={selected === value}
       onClick={(): void => {
         onClick(value)

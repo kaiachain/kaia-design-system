@@ -1,3 +1,4 @@
+import '@emotion/react'
 import { hexToRGBA } from '../utils'
 
 export const darkTheme = {
@@ -100,19 +101,19 @@ export const darkTheme = {
   },
 }
 
-export type Theme = typeof darkTheme
+export type KaTheme = typeof darkTheme
 
-declare module 'styled-components' {
-  export interface DefaultTheme extends Theme {}
+declare module '@emotion/react' {
+  export interface Theme extends KaTheme {}
 }
 
 export const themeFunc =
-  <T1 extends keyof Theme, T2 extends keyof Theme[T1]>(
+  <T1 extends keyof KaTheme, T2 extends keyof KaTheme[T1]>(
     val1: T1,
     val2: T2,
     opacity?: number,
   ) =>
-  ({ theme }: { theme: Theme }): string =>
+  ({ theme }: { theme: KaTheme }): string =>
     hexToRGBA(theme[val1][val2] as string, opacity || 1)
 
 export const lightTheme = {

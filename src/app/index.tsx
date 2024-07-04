@@ -1,6 +1,7 @@
-import styled, { ThemeProvider } from 'styled-components'
-import { darkTheme, lightTheme } from '../styles/theme'
+import styled from '@emotion/styled'
+import { ThemeProvider } from '@emotion/react'
 
+import { darkTheme, lightTheme } from '../styles/theme'
 export { lightTheme, darkTheme }
 
 const StyledThemeProvider = styled.div`
@@ -28,8 +29,6 @@ const StyledThemeProvider = styled.div`
   --Spacing-4: 1rem;
   --Spacing-5: 1.25rem;
   --Spacing-6: 1.5rem;
-
-  height: 100%;
 `
 
 export const KaThemeProvider: React.FC<{

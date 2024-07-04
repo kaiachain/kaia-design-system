@@ -1,11 +1,11 @@
 # Kaia Design System
 
-This is the Kaia Design System built with React and styled-components, using Yarn for package management and building the project. The kit includes a variety of reusable UI components and SVG icons.
+This is the Kaia Design System built with React and emotion/styled, using Yarn for package management and building the project. The kit includes a variety of reusable UI components and SVG icons.
 
 ## Features
 
 - **React Components**: Modular and reusable React components.
-- **Styled-Components**: Utilizes styled-components for styling.
+- **@emotion/styled**: Utilizes @emotion/styled for styling.
 - **SVG Icons**: Easy inclusion and use of SVG icons with automatic imports.
 - **TypeScript**: Strongly typed components using TypeScript.
 

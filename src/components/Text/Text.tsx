@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from '@emotion/styled'
 
 import { HTMLAttributes, ReactElement, ReactNode } from 'react'
 import { themeFunc, font, KaFontType } from '../../styles'

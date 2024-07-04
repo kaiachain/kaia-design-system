@@ -1,5 +1,6 @@
 import { ReactElement } from 'react'
-import styled, { css } from 'styled-components'
+import styled from '@emotion/styled'
+import { css } from '@emotion/react'
 import { themeFunc } from '../../styles'
 import { useKaTheme } from '../../hooks'
 import ConfirmNormal from '../../icons/ConfirmNormal.svg'
@@ -14,29 +15,29 @@ const CheckBoxInput = styled.div<{
   outline-offset: -1px;
   cursor: pointer;
 
-  ${({ disabled, checked }) =>
+  ${({ disabled, checked, theme }) =>
     disabled
-      ? css`
-          background-color: ${themeFunc('elevation', '8')};
-          outline-color: ${themeFunc('elevation', '8')};
-          cursor: not-allowed;
-        `
+      ? css({
+          backgroundColor: theme.elevation[8],
+          outlineColor: theme.elevation[8],
+          cursor: 'not-allowed',
+        })
       : checked
-        ? css`
-            background-color: ${themeFunc('brand', '5')};
-            &:hover {
-              background-color: ${themeFunc('brand', '4')};
-            }
-          `
-        : css`
-            outline: 1px solid;
-            outline-color: ${themeFunc('brand', '5')};
-            background-color: ${themeFunc('elevation', '7')};
-            &:hover {
-              outline-color: ${themeFunc('brand', '4')};
-              background-color: ${themeFunc('elevation', '8')};
-            }
-          `}
+        ? css({
+            backgroundColor: theme.brand[5],
+            '&:hover': {
+              backgroundColor: theme.brand[4],
+            },
+          })
+        : css({
+            outline: '1px solid',
+            outlineColor: theme.brand[5],
+            backgroundColor: theme.elevation[7],
+            '&:hover': {
+              outlineColor: theme.brand[4],
+              backgroundColor: theme.elevation[8],
+            },
+          })}
 `
 
 export type KaCheckBoxProps<T> = {

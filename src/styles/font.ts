@@ -1,4 +1,4 @@
-import { css } from 'styled-components'
+import { css } from '@emotion/react'
 export const font = {
   'body/xs_400': css`
     font-size: 10px;

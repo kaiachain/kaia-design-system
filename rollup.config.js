@@ -1,26 +1,28 @@
-const babel = require('@rollup/plugin-babel').default
-const typescript = require('@rollup/plugin-typescript')
-const { nodeResolve } = require('@rollup/plugin-node-resolve')
-const commonjs = require('@rollup/plugin-commonjs')
-const peerDepsExternal = require('rollup-plugin-peer-deps-external')
-const svgr = require('@svgr/rollup')
-const terser = require('@rollup/plugin-terser')
+import babel from '@rollup/plugin-babel'
+import typescript from '@rollup/plugin-typescript'
+import { nodeResolve } from '@rollup/plugin-node-resolve'
+import commonjs from '@rollup/plugin-commonjs'
+import peerDepsExternal from 'rollup-plugin-peer-deps-external'
+import svgr from '@svgr/rollup'
+import terser from '@rollup/plugin-terser'
 
-module.exports = {
+export default {
   input: 'src/index.ts',
   output: [
     {
       file: 'dist/index.js',
       format: 'cjs',
       sourcemap: true,
+      interop: 'compat',
     },
     {
       file: 'dist/index.esm.js',
       format: 'esm',
       sourcemap: true,
+      interop: 'compat',
     },
   ],
-  external: ['react', 'react-dom', 'styled-components'],
+  external: ['react', 'react-dom'],
   plugins: [
     svgr(),
     peerDepsExternal(),

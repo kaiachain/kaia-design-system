@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react'
-import styled from 'styled-components'
+import styled from '@emotion/styled'
 import { KaFontType, themeFunc } from '../../styles'
 import { KaText } from '../Text/Text'
 import { useKaTheme } from '../../hooks'
