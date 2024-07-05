@@ -112,6 +112,7 @@ export const KaButton = ({
         <KaText
           fontType={fontType}
           color={rest.disabled ? getTheme('elevation', '4') : fontColor}
+          style={{ padding: '0 12px' }}
         >
           {children}
         </KaText>
