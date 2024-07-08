@@ -1,3 +1,6 @@
+**Note: This repository is currently in the experimental stage. Features and implementations are subject to change as development progresses.**
+
+
 # Kaia Design System
 
 This is the Kaia Design System built with React and emotion/styled, using Yarn for package management and building the project. The kit includes a variety of reusable UI components and SVG icons.
