@@ -1,39 +1,35 @@
 import styled from '@emotion/styled'
 
 import { HTMLAttributes, ReactElement, ReactNode } from 'react'
-import { themeFunc, font, KaFontType } from '../../styles'
+import { themeFunc, font, KaFontType, TthemeFuncR } from '../../styles'
 
-const StyledText = styled.div<{ type: KaFontType }>`
-  color: ${themeFunc('gray', '0')};
+type TStyledTextP = {
+  fontType: KaFontType
+  themeFuncR?: TthemeFuncR
+}
+
+const StyledText = styled.div<TStyledTextP>`
+  color: ${({ themeFuncR }) => themeFuncR ?? themeFunc('gray', '0')};
   font-stretch: normal;
   font-style: normal;
   line-height: normal;
   white-space: pre-wrap;
   word-break: break-word;
-  ${({ type }) => font[type]}
+  ${({ fontType }) => font[fontType]}
 `
 
 export type KaTextProps = {
-  fontType: KaFontType
   children: ReactNode
   color?: string
   inBorder?: boolean
-} & HTMLAttributes<HTMLDivElement>
+} & TStyledTextP &
+  HTMLAttributes<HTMLDivElement>
 
 export const KaText = ({
-  fontType,
-  children,
   color,
   inBorder = false,
   style,
   ...rest
 }: KaTextProps): ReactElement => {
-  return (
-    <StyledText
-      type={fontType}
-      style={{ color, ...style }}
-      children={children}
-      {...rest}
-    />
-  )
+  return <StyledText style={{ color, ...style }} {...rest} />
 }

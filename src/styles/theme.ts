@@ -107,13 +107,15 @@ declare module '@emotion/react' {
   export interface Theme extends KaTheme {}
 }
 
+export type TthemeFuncR = (props: { theme: KaTheme }) => string
+
 export const themeFunc =
   <T1 extends keyof KaTheme, T2 extends keyof KaTheme[T1]>(
     val1: T1,
     val2: T2,
     opacity?: number,
-  ) =>
-  ({ theme }: { theme: KaTheme }): string =>
+  ): TthemeFuncR =>
+  ({ theme }) =>
     hexToRGBA(theme[val1][val2] as string, opacity || 1)
 
 export const lightTheme = {
