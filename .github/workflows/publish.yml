@@ -2,7 +2,7 @@ name: "package publishing"
 
 on:
   push:
-    branches: ["implement-cicd"]
+    branches: ["main"]
 
 jobs:
   build:
