@@ -1,5 +1,5 @@
 {
-  "name": "kaia-design-system",
+  "name": "@kaiachain/kaia-design-system",
   "version": "0.1.1",
   "license": "MIT",
   "type": "module",
