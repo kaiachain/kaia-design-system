@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import styled from '@emotion/styled'
+import styled, { ThemeProvider } from 'styled-components'
 
 import {
   KaThemeProvider,
@@ -10,7 +10,8 @@ import {
   useKaTheme,
   KaRadio,
   KaCheckBox,
-} from 'kaia-design-system'
+  darkTheme,
+} from '@kaiachain/kaia-design-system'
 
 import './App.css'
 
@@ -120,9 +121,11 @@ function App() {
   const [theme, setTheme] = useState<'light' | 'dark'>('light')
 
   return (
-    <KaThemeProvider theme={theme}>
-      <Home theme={theme} setTheme={setTheme} />
-    </KaThemeProvider>
+    <ThemeProvider theme={darkTheme}>
+      <KaThemeProvider theme={theme}>
+        <Home theme={theme} setTheme={setTheme} />
+      </KaThemeProvider>
+    </ThemeProvider>
   )
 }
 
