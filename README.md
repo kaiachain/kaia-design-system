@@ -28,17 +28,30 @@ cd kaia-design-system
 yarn install
 ```
 
-### Building the Project
-
-To build the project, use the following command:
-
-```sh
-yarn build
-```
-
-This will generate the `dist` folder containing the built files: `index.js`, `index.js.map`, `index.esm.js`, and `index.esm.js.map`.
 
 ### Usage
+
+### Using KaThemeProvider
+
+To apply theming to your application using KaThemeProvider, set up your App.tsx as follows:
+
+```tsx
+import React, { useState } from 'react';
+import { KaThemeProvider } from 'kaia-design-system';
+
+function App() {
+  const [theme, setTheme] = useState<'light' | 'dark'>('light');
+
+  return (
+    <KaThemeProvider theme={theme}>
+      <Home />
+    </KaThemeProvider>
+  );
+}
+
+export default App;
+
+```
 
 #### Importing Components
 
@@ -46,11 +59,11 @@ To use a component from the design system, import it into your project:
 
 ```tsx
 import React from 'react';
-import { Button } from 'kaia-design-system';
+import { KaButton } from 'kaia-design-system';
 
 const App = () => (
   <div>
-    <Button>Click Me</Button>
+    <KaButton>Click Me</KaButton>
   </div>
 );
 
@@ -63,25 +76,15 @@ The design system includes a variety of SVG icons. You can import and use them a
 
 ```tsx
 import React from 'react';
-import Icons from 'kaia-design-system/icons';
+import { KaIcon } from 'kaia-design-system';
 
 const IconComponent: React.FC = () => (
   <div>
-    <Icons.AddressBook />
-    <Icons.Gift />
-    {/* Other icons can be used similarly */}
+    <KaIcon.SearchNormal style={{ width: 20, height: 30 }} stroke="blue" />
   </div>
 );
 
 export default IconComponent;
-```
-
-### Adding New SVG Icons
-
-To add new SVG icons, place your `.svg` files in the `src/icons` directory or its subdirectories. Then, run the `generateIcons.js` script to automatically generate the imports and exports for the icons.
-
-```sh
-node generateIcons.js
 ```
 
 ### Development
