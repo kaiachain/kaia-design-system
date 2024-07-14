@@ -26,6 +26,7 @@ export const darkTheme = {
     '8': '#FFFFFF21',
     '9': '#FFFFFF12',
     '10': '#FFFFFF0D',
+    dimmer: '#FFFFFF95',
   },
   brand: {
     '1': '#F2FCCE',
@@ -99,6 +100,15 @@ export const darkTheme = {
     '9': '#014170',
     '10': '#012845',
   },
+  decorative: {
+    salmon: '#FDD6CA',
+    lemon: '#F8FEB4',
+  },
+  sub: {
+    purple: '#A961EC',
+    pink: '#EF7499',
+    orange: '#F88424',
+  },
 }
 
 export type KaTheme = typeof darkTheme
@@ -141,6 +151,7 @@ export const lightTheme = {
     '8': '#04040414',
     '9': '#0404040D',
     '10': '#04040408',
+    dimmer: '#04040495',
   },
   brand: {
     '1': '#607805',
@@ -213,5 +224,14 @@ export const lightTheme = {
     '8': darkTheme.info['3'],
     '9': darkTheme.info['2'],
     '10': darkTheme.info['1'],
+  },
+  decorative: {
+    salmon: darkTheme.decorative['salmon'],
+    lemon: darkTheme.decorative['lemon'],
+  },
+  sub: {
+    purple: darkTheme.sub['purple'],
+    pink: darkTheme.sub['pink'],
+    orange: darkTheme.sub['orange'],
   },
 }
