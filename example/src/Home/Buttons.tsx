@@ -1,8 +1,16 @@
-import { KaButton } from '@kaiachain/kaia-design-system'
+import styled from '@emotion/styled'
 
+import { KaButton, useKaTheme } from '@kaiachain/kaia-design-system'
 import { Row } from './components/Row'
+import { View } from './components/View'
+
+const StyledBtnBox = styled(View)`
+  width: 200px;
+  padding: 10px;
+`
 
 const Buttons = () => {
+  const { getTheme } = useKaTheme()
   return (
     <>
       <Row>
@@ -15,6 +23,26 @@ const Buttons = () => {
         <KaButton rightIcon="right" size="sm" onClick={() => alert('?')}>
           Button
         </KaButton>
+        <KaButton rightIcon={<>^o^</>} size="sm" onClick={() => alert('?')}>
+          Button
+        </KaButton>
+      </Row>
+      <Row>
+        <StyledBtnBox style={{ backgroundColor: getTheme('gray', '3') }}>
+          <KaButton size="sm" onClick={() => alert('?')} fill>
+            Button
+          </KaButton>
+        </StyledBtnBox>
+        <StyledBtnBox style={{ backgroundColor: getTheme('gray', '6') }}>
+          <KaButton leftIcon="right" size="sm" onClick={() => alert('?')}>
+            Button
+          </KaButton>
+        </StyledBtnBox>
+        <StyledBtnBox style={{ backgroundColor: getTheme('gray', '9') }}>
+          <KaButton rightIcon="upright" size="sm" onClick={() => alert('?')}>
+            Button
+          </KaButton>
+        </StyledBtnBox>
       </Row>
 
       <Row>

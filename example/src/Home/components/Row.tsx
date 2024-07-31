@@ -1,7 +1,7 @@
 import styled from 'styled-components'
+import { View } from './View'
 
-const StyledRow = styled.div`
-  display: flex;
+const StyledRow = styled(View)`
   flex-direction: row;
   column-gap: 10px;
 `

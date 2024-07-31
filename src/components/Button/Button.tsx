@@ -1,11 +1,11 @@
 import React, { ReactElement, useMemo, useState } from 'react'
 import styled from '@emotion/styled'
-import { useTheme } from '@emotion/react'
 
 import { darkTheme, KaFontType, themeFunc } from '../../styles'
 import { KaText } from '../Text/Text'
 import { useKaTheme } from '../../hooks'
 import Chevron_right from '../../icons/Chevron_right.svg'
+import Arrowfatline_upright from '../../icons/Arrowfatline_upright.svg'
 import ConfirmNormal from '../../icons/ConfirmNormal.svg'
 
 const StyledButton = styled.button`
@@ -81,14 +81,18 @@ const StyledLedLineIconBox = styled(StyledIconBox)`
   background-color: ${themeFunc('elevation', '8')};
 `
 
+const IconList = ['check', 'right', 'upright'] as const
+type IconType = (typeof IconList)[number]
+
 interface KaButtonProps {
-  leftIcon?: 'check'
-  rightIcon?: 'right'
+  leftIcon?: IconType | ReactElement
+  rightIcon?: IconType | ReactElement
   type?: 'primary' | 'secondary' | 'tertiary' | 'red' | 'redLine'
   size?: 'sm' | 'md' | 'lg' | 'xl'
   disabled?: boolean
   onClick: () => void
   children: React.ReactNode
+  fill?: boolean
 }
 
 export const KaButton = ({
@@ -97,10 +101,10 @@ export const KaButton = ({
   type = 'primary',
   size = 'sm',
   children,
+  fill,
   ...rest
 }: KaButtonProps): ReactElement => {
   const { getTheme } = useKaTheme()
-  const theme = useTheme()
   const [hover, setHover] = useState(false)
 
   const { BtnComp, IconBoxComp, fontColor, iconColor } = useMemo(() => {
@@ -188,9 +192,37 @@ export const KaButton = ({
 
   const disabledColor = useMemo(() => getTheme('elevation', '8'), [getTheme])
 
+  const Icons = (type: IconType) => {
+    switch (type) {
+      case 'check':
+        return (
+          <ConfirmNormal
+            style={{ width: iconSize, height: iconSize }}
+            fill={rest.disabled ? disabledColor : iconColor}
+          />
+        )
+      case 'right':
+        return (
+          <Chevron_right
+            style={{ width: iconSize, height: iconSize }}
+            fill={rest.disabled ? disabledColor : iconColor}
+          />
+        )
+      case 'upright':
+        return (
+          <Arrowfatline_upright
+            style={{ width: iconSize, height: iconSize }}
+            fill={rest.disabled ? disabledColor : iconColor}
+          />
+        )
+      default:
+        return null
+    }
+  }
+
   return (
     <BtnComp
-      style={{ height }}
+      style={{ height, width: fill ? '100%' : 'fit-content' }}
       {...rest}
       onMouseOver={(): void => {
         setHover(true)
@@ -199,13 +231,12 @@ export const KaButton = ({
         setHover(false)
       }}
     >
-      {leftIcon && (
+      {typeof leftIcon === 'string' && IconList.includes(leftIcon) ? (
         <IconBoxComp style={{ width: iconBoxSize, height: iconBoxSize }}>
-          <ConfirmNormal
-            style={{ width: iconSize, height: iconSize }}
-            fill={rest.disabled ? disabledColor : iconColor}
-          />
+          {Icons(leftIcon)}
         </IconBoxComp>
+      ) : (
+        leftIcon
       )}
       {['number', 'string'].includes(typeof children) ? (
         <KaText
@@ -218,13 +249,12 @@ export const KaButton = ({
       ) : (
         children
       )}
-      {rightIcon && (
+      {typeof rightIcon === 'string' && IconList.includes(rightIcon) ? (
         <IconBoxComp style={{ width: iconBoxSize, height: iconBoxSize }}>
-          <Chevron_right
-            style={{ width: iconSize, height: iconSize }}
-            fill={rest.disabled ? disabledColor : iconColor}
-          />
+          {Icons(rightIcon)}
         </IconBoxComp>
+      ) : (
+        rightIcon
       )}
     </BtnComp>
   )
