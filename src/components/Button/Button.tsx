@@ -90,7 +90,7 @@ interface KaButtonProps {
   type?: 'primary' | 'secondary' | 'tertiary' | 'red' | 'redLine'
   size?: 'sm' | 'md' | 'lg' | 'xl'
   disabled?: boolean
-  onClick: () => void
+  onClick?: () => void
   children: React.ReactNode
   fill?: boolean
 }
