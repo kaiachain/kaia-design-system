@@ -18,6 +18,7 @@ export type KaTextProps = {
   children: ReactNode
   color?: string
   inBorder?: boolean
+  center?: boolean
 } & HTMLAttributes<HTMLDivElement>
 
 export const KaText = ({
@@ -25,13 +26,14 @@ export const KaText = ({
   children,
   color,
   inBorder = false,
+  center,
   style,
   ...rest
 }: KaTextProps): ReactElement => {
   return (
     <StyledText
       type={fontType}
-      style={{ color, ...style }}
+      style={{ color, textAlign: center ? 'center' : 'inherit', ...style }}
       children={children}
       {...rest}
     />

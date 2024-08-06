@@ -11,6 +11,7 @@ import {
 import { Row } from './components/Row'
 import Buttons from './Buttons'
 import CheckBoxes from './CheckBoxes'
+import Texts from './Texts'
 
 const StyledContainer = styled(Row)`
   padding: 20px;
@@ -74,6 +75,11 @@ const Home = ({
         </StyledSection>
       </div>
       <div>
+        <StyledSection>
+          <KaText fontType="title/lg_700">Texts</KaText>
+          <Texts />
+        </StyledSection>
+
         <StyledSection>
           <KaText fontType="title/lg_700">Buttons</KaText>
           <Buttons />
