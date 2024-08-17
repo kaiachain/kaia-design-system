@@ -48,6 +48,14 @@ const StyledTertiaryButton = styled(StyledButton)`
   border: 1px solid ${themeFunc('elevation', '4')};
 `
 
+const StyledTertiaryTintButton = styled(StyledButton)`
+  background-color: ${themeFunc('elevation', '9')};
+
+  &:disabled {
+    border: none;
+  }
+`
+
 const StyledRedButton = styled(StyledButton)`
   background-color: ${themeFunc('danger', '5')};
   &:hover:not(:disabled) {
@@ -87,7 +95,13 @@ type IconType = (typeof IconList)[number]
 interface KaButtonProps {
   leftIcon?: IconType | ReactElement
   rightIcon?: IconType | ReactElement
-  type?: 'primary' | 'secondary' | 'tertiary' | 'red' | 'redLine'
+  type?:
+    | 'primary'
+    | 'secondary'
+    | 'tertiary'
+    | 'tertiary-tint'
+    | 'red'
+    | 'redLine'
   size?: 'sm' | 'md' | 'lg' | 'xl'
   disabled?: boolean
   onClick?: () => void
@@ -128,6 +142,14 @@ export const KaButton = ({
         iconColor = fontColor = getTheme('elevation', '4')
       }
       BtnComp = StyledTertiaryButton
+      IconBoxComp = StyledSecondaryIconBox
+    } else if (type === 'tertiary-tint') {
+      if (hover) {
+        iconColor = fontColor = getTheme('brand', '4')
+      } else {
+        iconColor = fontColor = getTheme('brand', '5')
+      }
+      BtnComp = StyledTertiaryTintButton
       IconBoxComp = StyledSecondaryIconBox
     } else if (type === 'red') {
       BtnComp = StyledRedButton
