@@ -1,3 +1,5 @@
+import Arrow_upright from './Arrow_upright.svg'
+import Arrowfatline_upright from './Arrowfatline_upright.svg'
 import Chevron_bottom from './Chevron_bottom.svg'
 import Chevron_left from './Chevron_left.svg'
 import Chevron_right from './Chevron_right.svg'
@@ -13,6 +15,8 @@ import Paste from './Paste.svg'
 import SearchNormal from './SearchNormal.svg'
 
 export default {
+  Arrow_upright,
+  Arrowfatline_upright,
   Chevron_bottom,
   Chevron_left,
   Chevron_right,
