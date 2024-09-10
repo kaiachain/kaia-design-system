@@ -1,4 +1,4 @@
-import { darkTheme, lightTheme } from 'kaia-design-system'
+import { darkTheme, lightTheme } from '@kaiachain/kaia-design-system'
 
 export const customDarkTheme = {
   customColor: {
