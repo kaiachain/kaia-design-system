@@ -6,6 +6,7 @@ import {
   KaText,
   useKaTheme,
   KaRadio,
+  KaTextInput,
 } from '@kaiachain/kaia-design-system'
 
 import { Row } from './components/Row'
@@ -109,7 +110,44 @@ const Home = ({
           <KaLabel size="md" color="red" text="text" type="line" />
           <KaLabel size="md" color="red" text="text" type="paleBorder" />
         </StyledSection>
-
+        <StyledSection>
+          <KaText fontType="title/lg_700">TextInput</KaText>
+          <KaTextInput
+            title="Title"
+            inputProps={{
+              placeholder: 'placeholder',
+            }}
+            leftIcon="search"
+            message="message"
+          />
+          <KaTextInput
+            title="Both icons"
+            inputProps={{
+              placeholder: 'placeholder',
+            }}
+            leftIcon="close"
+            rightIcon="search"
+            message="message"
+          />
+          <KaTextInput
+            title="With width"
+            inputProps={{
+              placeholder: 'search here',
+            }}
+            leftIcon="search"
+            message="width:300px"
+            width="300px"
+          />
+          <KaTextInput
+            title="With pic"
+            inputProps={{
+              placeholder: 'search here',
+            }}
+            rightIcon="search"
+            message="default picture"
+            src="https://square-file.qa.klaytn.net/files/profile/default.png"
+          />
+        </StyledSection>
         <StyledSection>
           <KaText fontType="title/lg_700">Custom </KaText>
           <StyledCustom>CustomCustomCustom</StyledCustom>
