@@ -5,6 +5,9 @@ import { KaText } from '../Text/Text'
 import { useKaTheme } from '../../hooks'
 import MathClose from '../../icons/MathClose.svg'
 import SearchNormal from '../../icons/SearchNormal.svg'
+import MathPlus from '../../icons/MathPlus.svg'
+import MathMinus from '../../icons/MathMinus.svg'
+import { KaButton } from '../Button/Button'
 
 const StyledContainer = styled.div<{ width?: string }>`
   display: flex;
@@ -55,12 +58,17 @@ const StyledInput = styled.input`
   font-weight: 400;
   margin: 0;
   background-color: transparent;
+  text-overflow: ellipsis;
 
   color: ${themeFunc('gray', '0')};
   border: none;
   padding-left: 8px;
   ::placeholder {
-    color: ${themeFunc('gray', '5')};
+    font-size: 14px;
+    font-family: Manrope;
+    line-height: 20px;
+    font-weight: 600;
+    color: ${themeFunc('elevation', '5')};
   }
   :focus {
     outline: none;
@@ -100,6 +108,8 @@ export interface KaTextInputProps {
   plusminus?: boolean
   onPlus?: () => void
   onMinus?: () => void
+  onClickButton?: () => void
+  showButton?: boolean
   type?:
     | 'primary'
     | 'secondary'
@@ -118,11 +128,14 @@ export const KaTextInput = ({
   leftIcon,
   rightIcon,
   leftUnit,
+  rightUnit,
   width,
   message,
   plusminus,
   inputProps,
   onChangeText,
+  onClickButton,
+  showButton,
   src,
 }: KaTextInputProps): ReactElement => {
   const [inputValue, setInputValue] = useState('')
@@ -188,12 +201,34 @@ export const KaTextInput = ({
           ) : (
             leftIcon
           )}
+          {leftUnit && (
+            <KaText
+              fontType="body/md_400"
+              style={{
+                color: getTheme('elevation', '4'),
+                marginLeft: leftIcon ? '3px' : '8px',
+              }}
+            >
+              {leftUnit}
+            </KaText>
+          )}
 
           <StyledInput
             value={inputValue}
             onChange={handleInputChange}
             {...inputProps}
           />
+          {rightUnit && (
+            <KaText
+              fontType="body/md_400"
+              style={{
+                color: getTheme('elevation', '4'),
+                marginRight: rightIcon ? '3px' : '10px',
+              }}
+            >
+              {rightUnit}
+            </KaText>
+          )}
           {typeof rightIcon === 'string' && IconList.includes(rightIcon) ? (
             <StyledIconBox
               style={{
@@ -206,6 +241,26 @@ export const KaTextInput = ({
             </StyledIconBox>
           ) : (
             rightIcon
+          )}
+          {plusminus && (
+            <KaButton
+              leftIcon="check"
+              rightIcon="right"
+              size="md"
+              onClick={onClickButton}
+            >
+              {''}
+            </KaButton>
+          )}
+          {showButton && (
+            <KaButton
+              leftIcon="check"
+              rightIcon="right"
+              size="md"
+              onClick={onClickButton}
+            >
+              {'Button'}
+            </KaButton>
           )}
         </StyledInputContainer>
       </StyledWrapper>

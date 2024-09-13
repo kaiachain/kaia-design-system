@@ -119,6 +119,29 @@ const Home = ({
             }}
             leftIcon="search"
             message="message"
+            leftUnit="$"
+            rightUnit="SGD"
+          />
+          <KaTextInput
+            title="With button"
+            inputProps={{
+              placeholder: 'placeholder',
+            }}
+            leftIcon="search"
+            message="message"
+            showButton={true}
+            onClickButton={() => alert('?')}
+          />
+          <KaTextInput
+            title="With button and plusminus"
+            inputProps={{
+              placeholder: 'placeholder',
+            }}
+            leftIcon="search"
+            message="message"
+            showButton={true}
+            onClickButton={() => alert('?')}
+            plusminus={true}
           />
           <KaTextInput
             title="Both icons"
@@ -130,18 +153,31 @@ const Home = ({
             message="message"
           />
           <KaTextInput
-            title="With width"
+            title="With width and long sentence"
             inputProps={{
-              placeholder: 'search here',
+              placeholder: 'search here and see the sentence is very long',
             }}
             leftIcon="search"
             message="width:300px"
             width="300px"
+            rightIcon={'close'}
+          />
+          <KaTextInput
+            title="With Unit and long sentence"
+            inputProps={{
+              placeholder: 'search here and see the sentence is very long',
+            }}
+            leftIcon="search"
+            message="width:300px"
+            width="300px"
+            leftUnit="$"
+            rightUnit="Unit"
+            rightIcon={'close'}
           />
           <KaTextInput
             title="With pic"
             inputProps={{
-              placeholder: 'search here',
+              placeholder: 'search here and see the sentence is very long',
             }}
             rightIcon="search"
             message="default picture"
