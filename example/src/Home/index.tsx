@@ -13,6 +13,7 @@ import { Row } from './components/Row'
 import Buttons from './Buttons'
 import CheckBoxes from './CheckBoxes'
 import Texts from './Texts'
+import { useState } from 'react'
 
 const StyledContainer = styled(Row)`
   padding: 20px;
@@ -41,6 +42,7 @@ const Home = ({
   setTheme: React.Dispatch<React.SetStateAction<'light' | 'dark'>>
 }) => {
   const { getTheme } = useKaTheme()
+  const [value, setValue] = useState<string>('')
 
   return (
     <StyledContainer style={{ backgroundColor: getTheme('gray', '10') }}>
@@ -113,103 +115,49 @@ const Home = ({
         <StyledSection>
           <KaText fontType="title/lg_700">TextInput</KaText>
           <KaTextInput
-            title="Title"
             inputProps={{
               placeholder: 'placeholder',
+              value: value,
+              onChangeText: setValue,
             }}
             leftIcon="search"
-            message="message"
             leftUnit="$"
             rightUnit="SGD"
           />
           <KaTextInput
-            title="With button"
-            inputProps={{
-              placeholder: 'placeholder',
-            }}
-            leftIcon="search"
-            message="message"
-            showButton={true}
-            onClickButton={() => alert('?')}
-          />
-          <KaTextInput
-            title="With button and plusminus"
-            inputProps={{
-              placeholder: 'placeholder',
-            }}
-            leftIcon="search"
-            message="message"
-            showButton={true}
-            onClickButton={() => alert('?')}
-            plusminus={true}
-          />
-          <KaTextInput
-            title="Both icons"
             inputProps={{
               placeholder: 'placeholder',
             }}
             leftIcon="close"
-            rightIcon="search"
-            message="message"
-          />
-          <KaTextInput
-            title="With width and long sentence"
-            inputProps={{
-              placeholder: 'search here and see the sentence is very long',
-            }}
-            leftIcon="search"
-            message="width:300px"
-            width="300px"
-            rightIcon={'close'}
-          />
-          <KaTextInput
-            title="With Unit and long sentence"
-            inputProps={{
-              placeholder: 'search here and see the sentence is very long',
-            }}
-            leftIcon="search"
-            message="width:300px"
-            width="300px"
             leftUnit="$"
-            rightUnit="Unit"
-            rightIcon={'close'}
           />
           <KaTextInput
-            title="Error"
             inputProps={{
               placeholder: 'search here and see the sentence is very long',
             }}
             leftIcon="search"
-            message="error input box"
+            width="300px"
+            rightIcon={'close'}
+          />
+          <KaTextInput
+            inputProps={{
+              placeholder: 'search here and see the sentence is very long',
+            }}
+            leftIcon="search"
             leftUnit="$"
             rightUnit="Unit"
             rightIcon={'close'}
             isError={true}
-            plusminus={true}
-            showButton={true}
           />
           <KaTextInput
-            title="Disabled"
             inputProps={{
               placeholder: 'search here and see the sentence is very long',
             }}
             leftIcon="search"
-            message="width:300px"
             leftUnit="$"
             rightUnit="Unit"
             rightIcon={'close'}
             disabled={true}
-            plusminus={true}
-            showButton={true}
-          />
-          <KaTextInput
-            title="With pic"
-            inputProps={{
-              placeholder: 'search here and see the sentence is very long',
-            }}
-            rightIcon="search"
-            message="default picture"
-            src="https://square-file.qa.klaytn.net/files/profile/default.png"
           />
         </StyledSection>
         <StyledSection>

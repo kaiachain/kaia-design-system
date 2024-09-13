@@ -1,13 +1,10 @@
 import { ReactElement, useState } from 'react'
 import styled from '@emotion/styled'
-import { darkTheme, KaFontType, themeFunc } from '../../styles'
+import { themeFunc } from '../../styles'
 import { KaText } from '../Text/Text'
 import { useKaTheme } from '../../hooks'
 import MathClose from '../../icons/MathClose.svg'
 import SearchNormal from '../../icons/SearchNormal.svg'
-import MathPlus from '../../icons/MathPlus.svg'
-import MathMinus from '../../icons/MathMinus.svg'
-import { KaButton } from '../Button/Button'
 
 const StyledContainer = styled.div<{ width?: string }>`
   display: flex;
@@ -19,7 +16,6 @@ const StyledInputContainer = styled.div<{ width?: string }>`
   display: flex;
   flex-direction: row;
   flex: 1;
-  height: var(--Sizing-8, 40px);
   border-radius: var(--Radius-6, 360px);
   border: none;
   gap: 3px;
@@ -35,9 +31,7 @@ const StyledWrapper = styled.div`
   display: flex;
   flex-direction: row;
   border-radius: var(--Radius-6, 360px);
-  height: var(--Sizing-8, 40px);
   box-sizing: border-box;
-  gap: 3px;
   border: ${(props) => (props.isError ? '1px' : '4px')} solid
     ${(props: {
       isFocused: boolean
@@ -57,7 +51,6 @@ const StyledInput = styled.input<{ isError?: boolean }>`
   width: 100%;
   font-size: 14px;
   font-weight: 400;
-  margin: 0;
   height: var(--Sizing-8, 40px);
   background-color: transparent;
   text-overflow: ellipsis;
@@ -65,6 +58,7 @@ const StyledInput = styled.input<{ isError?: boolean }>`
   color: ${themeFunc('gray', '0')};
   border: none;
   padding-left: 8px;
+  box-sizing: border-box;
   ::placeholder {
     font-size: 14px;
     font-family: Manrope;
@@ -87,65 +81,35 @@ const StyledIconBox = styled.div`
   justify-content: center;
   border-radius: 50%;
 `
-type FormImgProps = {
-  src: string
-  style?: React.CSSProperties
-}
-const StyledFormImg = styled.img<FormImgProps>`
-  display: inline-block;
-  height: 34px;
-  width: 34px;
-`
 const IconList = ['search', 'close'] as const
 type IconType = (typeof IconList)[number]
 
 export interface KaTextInputProps {
-  title?: string
   inputProps?: {
     placeholder?: string
     value?: string
-    readOnly?: boolean
+    onChangeText?: (value: string) => void
   }
   leftIcon?: IconType | ReactElement
   rightIcon?: IconType | ReactElement
   leftUnit?: string
   rightUnit?: string
   width?: string
-  message?: string
-  plusminus?: boolean
-  onPlus?: () => void
-  onMinus?: () => void
-  onClickButton?: () => void
-  showButton?: boolean
   disabled?: boolean
-  onChangeText?: (text: string) => void
-  children?: React.ReactNode
-  src?: string
   isError?: boolean
 }
 
 export const KaTextInput = ({
-  title,
   leftIcon,
   rightIcon,
   leftUnit,
   rightUnit,
   width,
-  message,
-  plusminus,
   inputProps,
   disabled,
   isError,
-  onClickButton,
-  showButton,
-  src,
 }: KaTextInputProps): ReactElement => {
-  const [inputValue, setInputValue] = useState('')
   const { getTheme } = useKaTheme()
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value)
-  }
   const [onFocus, setOnFocus] = useState(false)
   const Icons = (type: IconType) => {
     switch (type) {
@@ -175,18 +139,6 @@ export const KaTextInput = ({
   }
   return (
     <StyledContainer width={width}>
-      {title && (
-        <KaText
-          fontType="body/md_600"
-          style={{
-            color: isError
-              ? getTheme('danger', '6')
-              : getTheme('elevation', '1'),
-          }}
-        >
-          {title}
-        </KaText>
-      )}
       <StyledWrapper
         isFocused={onFocus}
         borderColor={getTheme('elevation', '8')}
@@ -194,7 +146,6 @@ export const KaTextInput = ({
         errorColor={getTheme('danger', '6')}
       >
         <StyledInputContainer>
-          {src && <StyledFormImg src={src} style={{ borderRadius: '50%' }} />}
           {typeof leftIcon === 'string' && IconList.includes(leftIcon) ? (
             <StyledIconBox
               style={{
@@ -229,9 +180,11 @@ export const KaTextInput = ({
             onBlur={(): void => {
               setOnFocus(false)
             }}
-            value={inputValue}
             isError={isError}
-            onChange={handleInputChange}
+            onChange={({ target: { value } }): void => {
+              inputProps?.onChangeText?.(value)
+            }}
+            disabled={disabled}
             {...inputProps}
           />
           {rightUnit && (
@@ -260,44 +213,8 @@ export const KaTextInput = ({
           ) : (
             rightIcon
           )}
-          {plusminus && (
-            <KaButton
-              disabled={disabled}
-              type={disabled ? 'secondary' : undefined}
-              leftIcon="check"
-              rightIcon="right"
-              size="md"
-              onClick={onClickButton}
-            >
-              {''}
-            </KaButton>
-          )}
-          {showButton && (
-            <KaButton
-              disabled={disabled}
-              type={disabled ? 'secondary' : undefined}
-              leftIcon="check"
-              rightIcon="right"
-              size="md"
-              onClick={onClickButton}
-            >
-              {'Button'}
-            </KaButton>
-          )}
         </StyledInputContainer>
       </StyledWrapper>
-      {message && (
-        <KaText
-          fontType="body/sm_400"
-          style={{
-            color: isError
-              ? getTheme('danger', '6')
-              : getTheme('elevation', '4'),
-          }}
-        >
-          {message}
-        </KaText>
-      )}
     </StyledContainer>
   )
 }
