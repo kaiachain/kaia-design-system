@@ -175,6 +175,34 @@ const Home = ({
             rightIcon={'close'}
           />
           <KaTextInput
+            title="Error"
+            inputProps={{
+              placeholder: 'search here and see the sentence is very long',
+            }}
+            leftIcon="search"
+            message="error input box"
+            leftUnit="$"
+            rightUnit="Unit"
+            rightIcon={'close'}
+            isError={true}
+            plusminus={true}
+            showButton={true}
+          />
+          <KaTextInput
+            title="Disabled"
+            inputProps={{
+              placeholder: 'search here and see the sentence is very long',
+            }}
+            leftIcon="search"
+            message="width:300px"
+            leftUnit="$"
+            rightUnit="Unit"
+            rightIcon={'close'}
+            disabled={true}
+            plusminus={true}
+            showButton={true}
+          />
+          <KaTextInput
             title="With pic"
             inputProps={{
               placeholder: 'search here and see the sentence is very long',
