@@ -74,6 +74,9 @@ const StyledInput = styled.input<{ isError?: boolean }>`
   :focus {
     outline: none;
   }
+  :disabled {
+    cursor: not-allowed;
+  }
 `
 const StyledIconBox = styled.div`
   display: flex;
