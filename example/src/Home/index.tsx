@@ -6,12 +6,14 @@ import {
   KaText,
   useKaTheme,
   KaRadio,
+  KaTextInput,
 } from '@kaiachain/kaia-design-system'
 
 import { Row } from './components/Row'
 import Buttons from './Buttons'
 import CheckBoxes from './CheckBoxes'
 import Texts from './Texts'
+import { useState } from 'react'
 
 const StyledContainer = styled(Row)`
   padding: 20px;
@@ -40,6 +42,7 @@ const Home = ({
   setTheme: React.Dispatch<React.SetStateAction<'light' | 'dark'>>
 }) => {
   const { getTheme } = useKaTheme()
+  const [value, setValue] = useState<string>('')
 
   return (
     <StyledContainer style={{ backgroundColor: getTheme('gray', '10') }}>
@@ -100,6 +103,53 @@ const Home = ({
             style={{ width: 30, height: 20 }}
             stroke="blue"
           />
+          <Row>
+            <KaIcon.KaiaBrandmark_white
+              style={{ width: 20, height: 20 }}
+              stroke="blue"
+            />
+            <KaIcon.KaiaBrandmark_neonlime style={{ width: 20, height: 20 }} />
+            <KaIcon.KaiaBrandmark_black style={{ width: 20, height: 20 }} />
+            <KaIcon.KaiaWordmark_white
+              style={{ width: 50, height: 20 }}
+              stroke="blue"
+            />
+
+            <KaIcon.KaiaWordmark_neonlime style={{ width: 50, height: 20 }} />
+            <KaIcon.KaiaWordmark_black style={{ width: 50, height: 20 }} />
+          </Row>
+          <Row>
+            <KaIcon.Dark_Symbol_KaiaCritters
+              style={{ width: 60, height: 60 }}
+            />
+            <KaIcon.Light_Symbol_KaiaCritters
+              style={{ width: 60, height: 60 }}
+            />
+            <KaIcon.Dark_Symbol_KaiaSquare style={{ width: 60, height: 60 }} />
+            <KaIcon.Light_Symbol_KaiaSquare style={{ width: 60, height: 60 }} />
+            <KaIcon.Dark_Symbol_KaiaPortal style={{ width: 60, height: 60 }} />
+            <KaIcon.Light_Symbol_KaiaPortal style={{ width: 60, height: 60 }} />
+            <KaIcon.Dark_Symbol_KaiaScan style={{ width: 60, height: 60 }} />
+            <KaIcon.Light_Symbol_KaiaScan style={{ width: 60, height: 60 }} />
+            <KaIcon.Dark_Symbol_KaiaDoc style={{ width: 60, height: 60 }} />
+            <KaIcon.Light_Symbol_KaiaDoc style={{ width: 60, height: 60 }} />
+            <KaIcon.Dark_Symbol_KaiaGovernanceForum
+              style={{ width: 60, height: 60 }}
+            />
+            <KaIcon.Light_Symbol_KaiaGovernanceForum
+              style={{ width: 60, height: 60 }}
+            />
+            <KaIcon.Dark_Symbol_KaiaDevHub style={{ width: 60, height: 60 }} />
+            <KaIcon.Light_Symbol_KaiaDevHub style={{ width: 60, height: 60 }} />
+            <KaIcon.Dark_Symbol_KaiaWallet style={{ width: 60, height: 60 }} />
+            <KaIcon.Light_Symbol_KaiaWallet style={{ width: 60, height: 60 }} />
+            <KaIcon.Dark_Symbol_KaiaDevForum
+              style={{ width: 60, height: 60 }}
+            />
+            <KaIcon.Light_Symbol_KaiaDevForum
+              style={{ width: 60, height: 60 }}
+            />
+          </Row>
         </StyledSection>
         <StyledSection>
           <KaText fontType="title/lg_700">Labels</KaText>
@@ -109,7 +159,54 @@ const Home = ({
           <KaLabel size="md" color="red" text="text" type="line" />
           <KaLabel size="md" color="red" text="text" type="paleBorder" />
         </StyledSection>
-
+        <StyledSection>
+          <KaText fontType="title/lg_700">TextInput</KaText>
+          <KaTextInput
+            inputProps={{
+              placeholder: 'placeholder',
+              value: value,
+              onChangeText: setValue,
+            }}
+            leftIcon="search"
+            leftUnit="$"
+            rightUnit="SGD"
+          />
+          <KaTextInput
+            inputProps={{
+              placeholder: 'placeholder',
+            }}
+            leftIcon="close"
+            leftUnit="$"
+          />
+          <KaTextInput
+            inputProps={{
+              placeholder: 'search here and see the sentence is very long',
+            }}
+            leftIcon="search"
+            width="300px"
+            rightIcon={'close'}
+          />
+          <KaTextInput
+            inputProps={{
+              placeholder: 'search here and see the sentence is very long',
+            }}
+            leftIcon="search"
+            leftUnit="$"
+            rightUnit="Unit"
+            rightIcon={'close'}
+            isError={true}
+          />
+          <KaTextInput
+            inputProps={{
+              placeholder: 'search here and see the sentence is very long',
+            }}
+            leftIcon="search"
+            leftUnit="$"
+            rightUnit="Unit"
+            rightIcon={'close'}
+            disabled={true}
+          />
+        </StyledSection>
         <StyledSection>
           <KaText fontType="title/lg_700">Custom </KaText>
           <StyledCustom>CustomCustomCustom</StyledCustom>
