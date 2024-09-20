@@ -107,6 +107,7 @@ interface KaButtonProps {
   onClick?: () => void
   children: React.ReactNode
   fill?: boolean
+  style?: React.CSSProperties
 }
 
 export const KaButton = ({
@@ -116,6 +117,7 @@ export const KaButton = ({
   size = 'sm',
   children,
   fill,
+  style,
   ...rest
 }: KaButtonProps): ReactElement => {
   const { getTheme } = useKaTheme()
@@ -244,7 +246,12 @@ export const KaButton = ({
 
   return (
     <BtnComp
-      style={{ height, width: fill ? '100%' : 'fit-content' }}
+      style={{
+        height,
+        width: fill ? '100%' : 'fit-content',
+        justifyContent: fill ? 'space-between' : 'center',
+        ...style,
+      }}
       {...rest}
       onMouseOver={(): void => {
         setHover(true)
@@ -258,7 +265,7 @@ export const KaButton = ({
           {Icons(leftIcon)}
         </IconBoxComp>
       ) : (
-        leftIcon
+        (leftIcon ?? <div />)
       )}
       {['number', 'string'].includes(typeof children) ? (
         <KaText
@@ -276,7 +283,7 @@ export const KaButton = ({
           {Icons(rightIcon)}
         </IconBoxComp>
       ) : (
-        rightIcon
+        (rightIcon ?? <div />)
       )}
     </BtnComp>
   )
