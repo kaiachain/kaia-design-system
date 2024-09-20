@@ -23,13 +23,29 @@ const Buttons = () => {
         <KaButton rightIcon="right" size="sm" onClick={() => alert('?')}>
           Button
         </KaButton>
-        <KaButton rightIcon={<>^o^</>} size="sm" onClick={() => alert('?')}>
+        <KaButton
+          rightIcon={<>^o^</>}
+          size="sm"
+          onClick={() => alert('?')}
+          style={{ backgroundColor: 'red', paddingRight: 50 }}
+        >
           Button
         </KaButton>
       </Row>
       <Row>
         <StyledBtnBox style={{ backgroundColor: getTheme('gray', '3') }}>
-          <KaButton size="sm" onClick={() => alert('?')} fill>
+          <KaButton
+            size="sm"
+            onClick={() => alert('?')}
+            fill
+            leftIcon="check"
+            rightIcon="right"
+          >
+            Button
+          </KaButton>
+        </StyledBtnBox>
+        <StyledBtnBox style={{ backgroundColor: getTheme('gray', '3') }}>
+          <KaButton size="sm" onClick={() => alert('?')} fill rightIcon="right">
             Button
           </KaButton>
         </StyledBtnBox>
