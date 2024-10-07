@@ -77,16 +77,18 @@ const StyledIconBox = styled.div`
   border-radius: 50%;
 `
 
-const StyledPrimaryIconBox = styled(StyledIconBox)`
-  background-color: ${themeFunc('gray', '10')};
+const StyledPrimaryIconBox = styled(StyledIconBox)<{ disabled?: boolean }>`
+  background-color: ${({ disabled }) =>
+    disabled ? themeFunc('elevation', '9') : themeFunc('gray', '10')};
 `
 
-const StyledSecondaryIconBox = styled(StyledIconBox)`
+const StyledSecondaryIconBox = styled(StyledIconBox)<{ disabled?: boolean }>`
   background-color: ${themeFunc('elevation', '9')};
 `
 
-const StyledLedLineIconBox = styled(StyledIconBox)`
-  background-color: ${themeFunc('elevation', '8')};
+const StyledLedLineIconBox = styled(StyledIconBox)<{ disabled?: boolean }>`
+  background-color: ${({ disabled }) =>
+    disabled ? themeFunc('elevation', '9') : themeFunc('elevation', '8')};
 `
 
 const IconList = ['check', 'right', 'upright'] as const
@@ -261,7 +263,10 @@ export const KaButton = ({
       }}
     >
       {typeof leftIcon === 'string' && IconList.includes(leftIcon) ? (
-        <IconBoxComp style={{ width: iconBoxSize, height: iconBoxSize }}>
+        <IconBoxComp
+          style={{ width: iconBoxSize, height: iconBoxSize }}
+          disabled={rest.disabled}
+        >
           {Icons(leftIcon)}
         </IconBoxComp>
       ) : (
@@ -279,7 +284,10 @@ export const KaButton = ({
         children
       )}
       {typeof rightIcon === 'string' && IconList.includes(rightIcon) ? (
-        <IconBoxComp style={{ width: iconBoxSize, height: iconBoxSize }}>
+        <IconBoxComp
+          style={{ width: iconBoxSize, height: iconBoxSize }}
+          disabled={rest.disabled}
+        >
           {Icons(rightIcon)}
         </IconBoxComp>
       ) : (
