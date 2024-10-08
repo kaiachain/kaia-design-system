@@ -77,16 +77,18 @@ const StyledIconBox = styled.div`
   border-radius: 50%;
 `
 
-const StyledPrimaryIconBox = styled(StyledIconBox)`
-  background-color: ${themeFunc('gray', '10')};
+const StyledPrimaryIconBox = styled(StyledIconBox)<{ disabled?: boolean }>`
+  background-color: ${({ disabled }) =>
+    disabled ? themeFunc('elevation', '9') : themeFunc('gray', '10')};
 `
 
-const StyledSecondaryIconBox = styled(StyledIconBox)`
+const StyledSecondaryIconBox = styled(StyledIconBox)<{ disabled?: boolean }>`
   background-color: ${themeFunc('elevation', '9')};
 `
 
-const StyledLedLineIconBox = styled(StyledIconBox)`
-  background-color: ${themeFunc('elevation', '8')};
+const StyledLedLineIconBox = styled(StyledIconBox)<{ disabled?: boolean }>`
+  background-color: ${({ disabled }) =>
+    disabled ? themeFunc('elevation', '9') : themeFunc('elevation', '8')};
 `
 
 const IconList = ['check', 'right', 'upright'] as const
@@ -107,6 +109,7 @@ interface KaButtonProps {
   onClick?: () => void
   children: React.ReactNode
   fill?: boolean
+  style?: React.CSSProperties
 }
 
 export const KaButton = ({
@@ -116,6 +119,7 @@ export const KaButton = ({
   size = 'sm',
   children,
   fill,
+  style,
   ...rest
 }: KaButtonProps): ReactElement => {
   const { getTheme } = useKaTheme()
@@ -244,7 +248,12 @@ export const KaButton = ({
 
   return (
     <BtnComp
-      style={{ height, width: fill ? '100%' : 'fit-content' }}
+      style={{
+        height,
+        width: fill ? '100%' : 'fit-content',
+        justifyContent: fill ? 'space-between' : 'center',
+        ...style,
+      }}
       {...rest}
       onMouseOver={(): void => {
         setHover(true)
@@ -254,11 +263,14 @@ export const KaButton = ({
       }}
     >
       {typeof leftIcon === 'string' && IconList.includes(leftIcon) ? (
-        <IconBoxComp style={{ width: iconBoxSize, height: iconBoxSize }}>
+        <IconBoxComp
+          style={{ width: iconBoxSize, height: iconBoxSize }}
+          disabled={rest.disabled}
+        >
           {Icons(leftIcon)}
         </IconBoxComp>
       ) : (
-        leftIcon
+        (leftIcon ?? <div />)
       )}
       {['number', 'string'].includes(typeof children) ? (
         <KaText
@@ -272,11 +284,14 @@ export const KaButton = ({
         children
       )}
       {typeof rightIcon === 'string' && IconList.includes(rightIcon) ? (
-        <IconBoxComp style={{ width: iconBoxSize, height: iconBoxSize }}>
+        <IconBoxComp
+          style={{ width: iconBoxSize, height: iconBoxSize }}
+          disabled={rest.disabled}
+        >
           {Icons(rightIcon)}
         </IconBoxComp>
       ) : (
-        rightIcon
+        (rightIcon ?? <div />)
       )}
     </BtnComp>
   )
