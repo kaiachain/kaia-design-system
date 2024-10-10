@@ -2,18 +2,20 @@ import styled from 'styled-components'
 
 import {
   KaLabel,
-  KaIcon,
   KaText,
   useKaTheme,
   KaRadio,
   KaTextInput,
   KaButton,
+  KaSelectBox,
+  KaIcon,
 } from '@kaiachain/kaia-design-system'
 
 import { Row } from './components/Row'
 import Buttons from './Buttons'
 import CheckBoxes from './CheckBoxes'
 import Texts from './Texts'
+import Icons from './Icons'
 import { useState } from 'react'
 import { View } from './components/View'
 
@@ -45,6 +47,7 @@ const Home = ({
 }) => {
   const { getTheme } = useKaTheme()
   const [value, setValue] = useState<string>('')
+  const [selected, setSelected] = useState<string>('')
 
   return (
     <StyledContainer style={{ backgroundColor: getTheme('gray', '10') }}>
@@ -96,62 +99,7 @@ const Home = ({
         </StyledSection>
         <StyledSection>
           <KaText fontType="title/lg_700">Icons</KaText>
-
-          <KaIcon.SearchNormal
-            style={{ width: 20, height: 30 }}
-            stroke="blue"
-          />
-          <KaIcon.Chevron_bottom
-            style={{ width: 30, height: 20 }}
-            stroke="blue"
-          />
-          <Row>
-            <KaIcon.KaiaBrandmark_white
-              style={{ width: 20, height: 20 }}
-              stroke="blue"
-            />
-            <KaIcon.KaiaBrandmark_neonlime style={{ width: 20, height: 20 }} />
-            <KaIcon.KaiaBrandmark_black style={{ width: 20, height: 20 }} />
-            <KaIcon.KaiaWordmark_white
-              style={{ width: 50, height: 20 }}
-              stroke="blue"
-            />
-
-            <KaIcon.KaiaWordmark_neonlime style={{ width: 50, height: 20 }} />
-            <KaIcon.KaiaWordmark_black style={{ width: 50, height: 20 }} />
-          </Row>
-          <Row>
-            <KaIcon.Dark_Symbol_KaiaCritters
-              style={{ width: 60, height: 60 }}
-            />
-            <KaIcon.Light_Symbol_KaiaCritters
-              style={{ width: 60, height: 60 }}
-            />
-            <KaIcon.Dark_Symbol_KaiaSquare style={{ width: 60, height: 60 }} />
-            <KaIcon.Light_Symbol_KaiaSquare style={{ width: 60, height: 60 }} />
-            <KaIcon.Dark_Symbol_KaiaPortal style={{ width: 60, height: 60 }} />
-            <KaIcon.Light_Symbol_KaiaPortal style={{ width: 60, height: 60 }} />
-            <KaIcon.Dark_Symbol_KaiaScan style={{ width: 60, height: 60 }} />
-            <KaIcon.Light_Symbol_KaiaScan style={{ width: 60, height: 60 }} />
-            <KaIcon.Dark_Symbol_KaiaDoc style={{ width: 60, height: 60 }} />
-            <KaIcon.Light_Symbol_KaiaDoc style={{ width: 60, height: 60 }} />
-            <KaIcon.Dark_Symbol_KaiaGovernanceForum
-              style={{ width: 60, height: 60 }}
-            />
-            <KaIcon.Light_Symbol_KaiaGovernanceForum
-              style={{ width: 60, height: 60 }}
-            />
-            <KaIcon.Dark_Symbol_KaiaDevHub style={{ width: 60, height: 60 }} />
-            <KaIcon.Light_Symbol_KaiaDevHub style={{ width: 60, height: 60 }} />
-            <KaIcon.Dark_Symbol_KaiaWallet style={{ width: 60, height: 60 }} />
-            <KaIcon.Light_Symbol_KaiaWallet style={{ width: 60, height: 60 }} />
-            <KaIcon.Dark_Symbol_KaiaDevForum
-              style={{ width: 60, height: 60 }}
-            />
-            <KaIcon.Light_Symbol_KaiaDevForum
-              style={{ width: 60, height: 60 }}
-            />
-          </Row>
+          <Icons />
         </StyledSection>
         <StyledSection>
           <KaText fontType="title/lg_700">Labels</KaText>
@@ -160,6 +108,88 @@ const Home = ({
           <KaLabel size="md" color="red" text="text" type="pale" />
           <KaLabel size="md" color="red" text="text" type="line" />
           <KaLabel size="md" color="red" text="text" type="paleBorder" />
+        </StyledSection>
+        <StyledSection>
+          <KaText fontType="title/lg_700">SelectBox </KaText>
+          <KaText fontType="body/lg_400">Normal with disabled option</KaText>
+          <KaSelectBox
+            selectedValue={selected}
+            onSelect={setSelected}
+            optionList={[
+              { id: '0', label: 'Option 1' },
+              { id: '1', label: 'Disabled Option2', isDisabled: true },
+              { id: '2', label: 'Option 3' },
+            ]}
+          />
+          <KaText fontType="body/lg_400">
+            Width with nesting choices and maxheight
+          </KaText>
+          <KaSelectBox
+            selectedValue={selected}
+            onSelect={setSelected}
+            width="300px"
+            maxHeight="150px"
+            optionList={[
+              {
+                id: '7',
+                label: 'Group 1',
+                subItems: [
+                  {
+                    id: '3',
+                    label: 'SubItem 1',
+                    subItems: [
+                      { id: '5', label: 'More SubItem 1' },
+                      { id: '6', label: 'More SubItem 2' },
+                    ],
+                  },
+                  { id: '4', label: 'SubItem 2' },
+                ],
+              },
+              { id: '8', label: 'Option 4' },
+              { id: '9', label: 'Option 5' },
+            ]}
+          ></KaSelectBox>
+          <KaText fontType="body/lg_400">
+            Long choices with more levels but no icon
+          </KaText>
+          <KaSelectBox
+            selectedValue={selected}
+            onSelect={setSelected}
+            width="300px"
+            indentIcon={false}
+            placeholder="Here is a placeholder"
+            optionList={[
+              {
+                id: '10',
+                label: 'Example very long choice and it will be abbreviated',
+              },
+              { id: '11', label: 'Option 6' },
+              {
+                id: '12',
+                label: 'Option 7',
+                subItems: [
+                  {
+                    id: '15',
+                    label: 'Animals',
+                    subItems: [
+                      { id: '25', label: 'Tiger' },
+                      { id: '26', label: 'Dog' },
+                    ],
+                  },
+                  {
+                    id: '24',
+                    label: 'Colors',
+                    subItems: [
+                      { id: '27', label: 'Yellow' },
+                      { id: '28', label: 'Orange' },
+                    ],
+                  },
+                ],
+              },
+              { id: '13', label: 'Option 8' },
+              { id: '14', label: 'Option 9' },
+            ]}
+          ></KaSelectBox>
         </StyledSection>
         <StyledSection>
           <KaText fontType="title/lg_700">TextInput</KaText>
@@ -253,6 +283,7 @@ const Home = ({
             disabled={true}
           />
         </StyledSection>
+
         <StyledSection>
           <KaText fontType="title/lg_700">Custom </KaText>
           <StyledCustom>CustomCustomCustom</StyledCustom>
