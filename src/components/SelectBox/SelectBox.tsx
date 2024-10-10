@@ -158,6 +158,7 @@ export const KaSelectBox = ({
   const [isOpen, setIsOpen] = useState(false)
 
   const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set())
+  const [selected, setSelected] = useState('')
 
   const toggleExpand = (id: string) => {
     setExpandedItems((prev) => {
@@ -171,13 +172,28 @@ export const KaSelectBox = ({
     })
   }
 
+  const handleSelect = (option: Item, isChild: boolean) => {
+    if (option.subItems) {
+      if (!isChild) {
+        setSelected(option.label)
+      }
+      onSelect('')
+      toggleExpand(option.id)
+    } else {
+      onSelect(option.label)
+      setExpandedItems(new Set())
+      setIsOpen(false)
+    }
+  }
+
   const renderItem = (
     option: Item,
     level: number = 0,
     isChild: boolean = false,
     indentIcon: boolean,
   ) => {
-    const isSelected = option.label === selectedValue
+    const isSelected =
+      option.label === selectedValue || option.label === selected
     const isExpanded = expandedItems.has(option.id)
 
     return (
@@ -188,14 +204,7 @@ export const KaSelectBox = ({
           level={indentIcon ? level : level + 1}
           onClick={() => {
             if (!option.isDisabled) {
-              if (option.subItems) {
-                onSelect(option.label)
-                toggleExpand(option.id)
-              } else {
-                onSelect(option.label)
-                setExpandedItems(new Set())
-                setIsOpen(false)
-              }
+              handleSelect(option, isChild)
             }
           }}
           style={{
