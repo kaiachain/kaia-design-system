@@ -5,7 +5,10 @@ import {
   KaText,
   useKaTheme,
   KaRadio,
+  KaTextInput,
+  KaButton,
   KaSelectBox,
+  KaIcon,
 } from '@kaiachain/kaia-design-system'
 
 import { Row } from './components/Row'
@@ -14,7 +17,7 @@ import CheckBoxes from './CheckBoxes'
 import Texts from './Texts'
 import Icons from './Icons'
 import { useState } from 'react'
-import InputBox from './InputBox'
+import { View } from './components/View'
 
 const StyledContainer = styled(Row)`
   padding: 20px;
@@ -43,6 +46,7 @@ const Home = ({
   setTheme: React.Dispatch<React.SetStateAction<'light' | 'dark'>>
 }) => {
   const { getTheme } = useKaTheme()
+  const [value, setValue] = useState<string>('')
   const [selected, setSelected] = useState<string>('')
 
   return (
@@ -189,7 +193,95 @@ const Home = ({
         </StyledSection>
         <StyledSection>
           <KaText fontType="title/lg_700">TextInput</KaText>
-          <InputBox />
+          <KaTextInput
+            inputProps={{
+              placeholder: 'placeholder',
+              value: value,
+              onChangeText: setValue,
+            }}
+          />
+          <KaTextInput
+            inputProps={{
+              type: 'password',
+              placeholder: 'placeholder',
+              value: value,
+              onChangeText: setValue,
+              style: { color: 'red' },
+            }}
+            rightUnit="$"
+          />
+          <KaTextInput
+            inputProps={{
+              type: 'number',
+              placeholder: 'placeholder',
+              value: value,
+              onChangeText: setValue,
+            }}
+            leftUnit="$"
+          />
+          <KaTextInput
+            inputProps={{
+              placeholder: 'placeholder',
+              value: value,
+              onChangeText: setValue,
+            }}
+            leftComponent={
+              <View style={{ width: 24, paddingLeft: 4 }}>
+                <KaIcon.SearchNormal fill="dark" />
+              </View>
+            }
+            leftUnit="$"
+            rightUnit="SGD"
+          />
+          <KaTextInput
+            inputProps={{
+              value,
+              onChangeText: setValue,
+              placeholder: 'placeholder',
+            }}
+            rightComponent={<KaButton size="md">Confirm</KaButton>}
+            leftUnit="$"
+          />
+          <KaTextInput
+            inputProps={{
+              value,
+              onChangeText: setValue,
+              placeholder: 'search here and see the sentence is very long',
+            }}
+            leftComponent={
+              <View style={{ width: 24, paddingLeft: 4 }}>
+                <KaIcon.SearchNormal fill="dark" />
+              </View>
+            }
+            containerStyle={{ width: 300 }}
+            rightComponent={<KaButton size="md">Confirm</KaButton>}
+          />
+          <KaTextInput
+            inputProps={{
+              value,
+              onChangeText: setValue,
+              placeholder: 'search here and see the sentence is very long',
+            }}
+            leftComponent={
+              <View style={{ width: 24, paddingLeft: 4 }}>
+                <KaIcon.SearchNormal fill="dark" />
+              </View>
+            }
+            leftUnit="$"
+            rightUnit="Unit"
+            rightComponent={<KaButton size="md">Confirm</KaButton>}
+            isError={true}
+          />
+          <KaTextInput
+            inputProps={{
+              value,
+              onChangeText: setValue,
+              placeholder: 'search here and see the sentence is very long',
+            }}
+            leftUnit="$"
+            rightUnit="Unit"
+            disabled={true}
+          />
         </StyledSection>
 
         <StyledSection>

@@ -253,6 +253,9 @@ export const KaSelectBox = ({
   return (
     <ClickAwayListener
       onClickAway={(): void => {
+        if (!selectedValue) {
+          setSelected('')
+        }
         setExpandedItems(new Set())
         setIsOpen(false)
       }}
