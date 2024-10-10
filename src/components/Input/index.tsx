@@ -1,6 +1,6 @@
 import { ReactElement, useState } from 'react'
 import styled from '@emotion/styled'
-import { themeFunc } from '../../styles'
+import { font, themeFunc } from '../../styles'
 import { KaText } from '../Text/Text'
 import { useKaTheme } from '../../hooks'
 import MathClose from '../../icons/MathClose.svg'
@@ -16,11 +16,11 @@ const StyledContainer = styled.div<StyledContainerProps>`
   border-radius: var(--Radius-6, 360px);
   box-sizing: border-box;
   outline: ${({ isError }) => (isError ? '1px' : '4px')} solid;
-  outline-color: ${({ theme, isFocused, isError }): string =>
+  outline-color: ${({ isFocused, isError }) =>
     isError
-      ? theme.danger['6']
+      ? themeFunc('danger', '6')
       : isFocused
-        ? theme.elevation['8']
+        ? themeFunc('elevation', '8')
         : 'transparent'};
   transition: border-color 0.3s ease;
 `
@@ -52,25 +52,20 @@ const StyledClose = styled.div`
 
 const StyledInput = styled.input<{ isError?: boolean }>`
   flex: 1;
-  width: 100%;
-  font-size: 14px;
-  font-weight: 400;
+  ${font['body/md_600'].styles};
   height: var(--Sizing-8, 40px);
   background-color: transparent;
   text-overflow: ellipsis;
 
-  color: ${themeFunc('gray', '0')};
+  color: ${({ disabled }) =>
+    disabled ? themeFunc('elevation', '6') : themeFunc('gray', '0')};
   border: none;
   box-sizing: border-box;
   ::placeholder {
-    font-size: 14px;
-    font-family: Manrope;
-    line-height: 20px;
-    font-weight: 600;
-    color: ${(props) =>
-      props.isError
+    color: ${({ isError, disabled }) =>
+      isError
         ? themeFunc('danger', '6')
-        : props.disabled
+        : disabled
           ? themeFunc('elevation', '6')
           : themeFunc('elevation', '5')};
   }
@@ -83,10 +78,12 @@ const StyledInput = styled.input<{ isError?: boolean }>`
 `
 
 export interface KaTextInputProps {
-  inputProps?: {
+  inputProps: {
+    type?: 'text' | 'email' | 'password' | 'number'
     placeholder?: string
-    value?: string
-    onChangeText?: (value: string) => void
+    value: string
+    onChangeText: (value: string) => void
+    style?: React.CSSProperties
   }
   leftComponent?: ReactElement
   rightComponent?: ReactElement
@@ -102,7 +99,12 @@ export const KaTextInput = ({
   rightComponent,
   leftUnit,
   rightUnit,
-  inputProps,
+  inputProps = {
+    type: 'text',
+    placeholder: '',
+    value: '',
+    onChangeText: () => {},
+  },
   disabled,
   isError,
   containerStyle,
@@ -141,7 +143,7 @@ export const KaTextInput = ({
             }}
             isError={isError}
             onChange={({ target: { value } }): void => {
-              inputProps?.onChangeText?.(value)
+              inputProps.onChangeText?.(value)
             }}
             disabled={disabled}
             {...inputProps}
@@ -158,10 +160,10 @@ export const KaTextInput = ({
               {rightUnit}
             </KaText>
           )}
-          {inputProps?.value && (
+          {inputProps.value && !disabled && (
             <StyledClose
               onClick={(): void => {
-                inputProps?.onChangeText?.('')
+                inputProps.onChangeText?.('')
               }}
             >
               <MathClose
@@ -169,9 +171,7 @@ export const KaTextInput = ({
                   width: 'var(--Sizing-3, 12px)',
                   height: 'var(--Sizing-3, 12px)',
                 }}
-                fill={
-                  disabled ? getTheme('elevation', '7') : getTheme('gray', '0')
-                }
+                fill={getTheme('elevation', '4')}
               />
             </StyledClose>
           )}
