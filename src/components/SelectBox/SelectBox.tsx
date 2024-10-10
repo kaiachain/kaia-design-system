@@ -1,6 +1,6 @@
 import { ReactElement, useState } from 'react'
 import styled from '@emotion/styled'
-import { themeFunc } from '../../styles'
+import { font, themeFunc } from '../../styles'
 import { useKaTheme } from '../../hooks'
 import ClickAwayListener from 'react-click-away-listener'
 import { KaText } from '../Text/Text'
@@ -9,10 +9,10 @@ import Indent_DownRight from '../../icons/Indent_DownRight.svg'
 import { keyframes } from '@emotion/react'
 import _ from 'lodash'
 
-const StyledDropdown = styled.div<{ width?: string }>`
+const StyledDropdown = styled.div`
   position: relative;
   flex: 1;
-  width: ${(props) => props.width || '100%'};
+  width: '100%';
 
   display: flex;
   flex-direction: column;
@@ -105,12 +105,12 @@ const StyledDropdownItem = styled(View)<{
         ? '14px 16px'
         : `14px ${16 * props.level}px`};
   color: ${themeFunc('gray', '10')};
-  font-weight: 400;
+  font: ${font['body/md_400'].styles};
   :hover {
     background-color: ${themeFunc('elevation', '8')};
   }
   :active {
-    font-weight: 700;
+    font: ${font['body/md_700'].styles};
   }
   :first-of-type {
     border-top: 0;
@@ -125,22 +125,21 @@ const NeonBar = styled.div`
   border-radius: 6px;
   justify-content: center;
 `
-interface Item {
+interface KaSelectBoxOptionListType {
   id: string
   label: string
-  subItems?: Item[]
+  subItems?: KaSelectBoxOptionListType[]
   isDisabled?: boolean
   img?: string
 }
 
 export interface KaSelectBoxProps {
-  optionList: Item[]
+  optionList: KaSelectBoxOptionListType[]
   onSelect: (value: string) => void
   selectedValue: string
   placeholder?: string
   indentIcon?: boolean
-  width?: string
-  disabled?: boolean
+  containerStyle?: React.CSSProperties
   maxHeight?: string
 }
 
@@ -149,8 +148,7 @@ export const KaSelectBox = ({
   placeholder,
   onSelect,
   selectedValue,
-  width,
-  disabled,
+  containerStyle,
   maxHeight,
   indentIcon = true,
 }: KaSelectBoxProps): ReactElement => {
@@ -172,7 +170,10 @@ export const KaSelectBox = ({
     })
   }
 
-  const handleSelect = (option: Item, isChild: boolean) => {
+  const handleSelect = (
+    option: KaSelectBoxOptionListType,
+    isChild: boolean,
+  ) => {
     if (option.subItems) {
       if (!isChild) {
         setSelected(option.label)
@@ -190,7 +191,7 @@ export const KaSelectBox = ({
   }
 
   const renderItem = (
-    option: Item,
+    option: KaSelectBoxOptionListType,
     level: number = 0,
     isChild: boolean = false,
     indentIcon: boolean,
@@ -260,7 +261,7 @@ export const KaSelectBox = ({
         setIsOpen(false)
       }}
     >
-      <StyledDropdown width={width}>
+      <StyledDropdown style={containerStyle}>
         <StyledDropdownToggle
           onClick={(): void => {
             setIsOpen(!isOpen)
@@ -290,8 +291,10 @@ export const KaSelectBox = ({
         {isOpen && (
           <StyledDropdownMenu maxHeight={maxHeight}>
             <View>
-              {_.map(optionList, (option: Item, i: number) =>
-                renderItem(option, 0, false, indentIcon),
+              {_.map(
+                optionList,
+                (option: KaSelectBoxOptionListType, i: number) =>
+                  renderItem(option, 0, false, indentIcon),
               )}
             </View>
           </StyledDropdownMenu>
