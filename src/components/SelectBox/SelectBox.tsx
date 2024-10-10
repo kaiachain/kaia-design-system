@@ -180,6 +180,9 @@ export const KaSelectBox = ({
       onSelect('')
       toggleExpand(option.id)
     } else {
+      if (!isChild) {
+        setSelected('')
+      }
       onSelect(option.label)
       setExpandedItems(new Set())
       setIsOpen(false)
