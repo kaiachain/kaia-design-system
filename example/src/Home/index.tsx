@@ -7,6 +7,7 @@ import {
   useKaTheme,
   KaRadio,
   KaTextInput,
+  KaButton,
 } from '@kaiachain/kaia-design-system'
 
 import { Row } from './components/Row'
@@ -14,6 +15,7 @@ import Buttons from './Buttons'
 import CheckBoxes from './CheckBoxes'
 import Texts from './Texts'
 import { useState } from 'react'
+import { View } from './components/View'
 
 const StyledContainer = styled(Row)`
   padding: 20px;
@@ -167,7 +169,34 @@ const Home = ({
               value: value,
               onChangeText: setValue,
             }}
-            leftIcon="search"
+          />{' '}
+          <KaTextInput
+            inputProps={{
+              placeholder: 'placeholder',
+              value: value,
+              onChangeText: setValue,
+            }}
+            rightUnit="$"
+          />
+          <KaTextInput
+            inputProps={{
+              placeholder: 'placeholder',
+              value: value,
+              onChangeText: setValue,
+            }}
+            leftUnit="$"
+          />
+          <KaTextInput
+            inputProps={{
+              placeholder: 'placeholder',
+              value: value,
+              onChangeText: setValue,
+            }}
+            leftComponent={
+              <View style={{ width: 24, paddingLeft: 4 }}>
+                <KaIcon.SearchNormal fill="dark" />
+              </View>
+            }
             leftUnit="$"
             rightUnit="SGD"
           />
@@ -175,35 +204,43 @@ const Home = ({
             inputProps={{
               placeholder: 'placeholder',
             }}
-            leftIcon="close"
+            rightComponent={<KaButton size="md">Confirm</KaButton>}
             leftUnit="$"
           />
           <KaTextInput
             inputProps={{
               placeholder: 'search here and see the sentence is very long',
             }}
-            leftIcon="search"
-            width="300px"
-            rightIcon={'close'}
+            leftComponent={
+              <View style={{ width: 24, paddingLeft: 4 }}>
+                <KaIcon.SearchNormal fill="dark" />
+              </View>
+            }
+            containerStyle={{ width: 300 }}
+            rightComponent={<KaButton size="md">Confirm</KaButton>}
           />
           <KaTextInput
             inputProps={{
               placeholder: 'search here and see the sentence is very long',
             }}
-            leftIcon="search"
+            leftComponent={
+              <View style={{ width: 24, paddingLeft: 4 }}>
+                <KaIcon.SearchNormal fill="dark" />
+              </View>
+            }
             leftUnit="$"
             rightUnit="Unit"
-            rightIcon={'close'}
+            rightComponent={<KaButton size="md">Confirm</KaButton>}
             isError={true}
           />
           <KaTextInput
             inputProps={{
               placeholder: 'search here and see the sentence is very long',
             }}
-            leftIcon="search"
+            //  leftComponent="search"
             leftUnit="$"
             rightUnit="Unit"
-            rightIcon={'close'}
+            //rightComponent={'close'}
             disabled={true}
           />
         </StyledSection>

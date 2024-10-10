@@ -4,48 +4,52 @@ import { themeFunc } from '../../styles'
 import { KaText } from '../Text/Text'
 import { useKaTheme } from '../../hooks'
 import MathClose from '../../icons/MathClose.svg'
-import SearchNormal from '../../icons/SearchNormal.svg'
 
-const StyledContainer = styled.div<{ width?: string }>`
-  display: flex;
-  flex-direction: column;
-  width: ${(props) => props.width || '100%'};
-  gap: 5px;
-`
-const StyledInputContainer = styled.div<{ width?: string }>`
+interface StyledContainerProps {
+  isFocused: boolean
+  isError?: boolean
+}
+
+const StyledContainer = styled.div<StyledContainerProps>`
   display: flex;
   flex-direction: row;
-  flex: 1;
   border-radius: var(--Radius-6, 360px);
-  border: none;
-  gap: 3px;
-
-  background-color: ${themeFunc('elevation', '9')};
-  align-items: center;
-  padding: 0;
-
-  width: ${(props) => props.width || 'auto'};
+  box-sizing: border-box;
+  outline: ${({ isError }) => (isError ? '1px' : '4px')} solid;
+  outline-color: ${({ theme, isFocused, isError }): string =>
+    isError
+      ? theme.danger['6']
+      : isFocused
+        ? theme.elevation['8']
+        : 'transparent'};
+  transition: border-color 0.3s ease;
 `
 
 const StyledWrapper = styled.div`
   display: flex;
   flex-direction: row;
+  flex: 1;
   border-radius: var(--Radius-6, 360px);
-  box-sizing: border-box;
-  border: ${(props) => (props.isError ? '1px' : '4px')} solid
-    ${(props: {
-      isFocused: boolean
-      borderColor: string
-      isError: boolean | undefined
-      errorColor: string
-    }): string =>
-      props.isError
-        ? props.errorColor
-        : props.isFocused
-          ? props.borderColor
-          : 'transparent'};
-  transition: border-color 0.3s ease;
+  border: none;
+  background-color: ${themeFunc('elevation', '9')};
+  align-items: center;
 `
+
+const StyledInputContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  gap: var(--Spacing-2, 8px);
+  padding: 0px var(--Spacing-4, 16px);
+  align-items: center;
+`
+
+const StyledClose = styled.div`
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+`
+
 const StyledInput = styled.input<{ isError?: boolean }>`
   flex: 1;
   width: 100%;
@@ -57,7 +61,6 @@ const StyledInput = styled.input<{ isError?: boolean }>`
 
   color: ${themeFunc('gray', '0')};
   border: none;
-  padding-left: 8px;
   box-sizing: border-box;
   ::placeholder {
     font-size: 14px;
@@ -78,14 +81,6 @@ const StyledInput = styled.input<{ isError?: boolean }>`
     cursor: not-allowed;
   }
 `
-const StyledIconBox = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-`
-const IconList = ['search', 'close'] as const
-type IconType = (typeof IconList)[number]
 
 export interface KaTextInputProps {
   inputProps?: {
@@ -93,75 +88,37 @@ export interface KaTextInputProps {
     value?: string
     onChangeText?: (value: string) => void
   }
-  leftIcon?: IconType | ReactElement
-  rightIcon?: IconType | ReactElement
+  leftComponent?: ReactElement
+  rightComponent?: ReactElement
   leftUnit?: string
   rightUnit?: string
-  width?: string
   disabled?: boolean
   isError?: boolean
+  containerStyle?: React.CSSProperties
 }
 
 export const KaTextInput = ({
-  leftIcon,
-  rightIcon,
+  leftComponent,
+  rightComponent,
   leftUnit,
   rightUnit,
-  width,
   inputProps,
   disabled,
   isError,
+  containerStyle,
 }: KaTextInputProps): ReactElement => {
   const { getTheme } = useKaTheme()
   const [onFocus, setOnFocus] = useState(false)
-  const Icons = (type: IconType) => {
-    switch (type) {
-      case 'search':
-        return (
-          <SearchNormal
-            style={{
-              width: 'var(--Sizing-3, 12px)',
-              height: 'var(--Sizing-3, 12px)',
-            }}
-            fill={disabled ? getTheme('elevation', '7') : getTheme('gray', '0')}
-          />
-        )
-      case 'close':
-        return (
-          <MathClose
-            style={{
-              width: 'var(--Sizing-3, 12px)',
-              height: 'var(--Sizing-3, 12px)',
-            }}
-            fill={disabled ? getTheme('elevation', '7') : getTheme('gray', '0')}
-          />
-        )
-      default:
-        return null
-    }
-  }
+
   return (
-    <StyledContainer width={width}>
-      <StyledWrapper
-        isFocused={onFocus}
-        borderColor={getTheme('elevation', '8')}
-        isError={isError}
-        errorColor={getTheme('danger', '6')}
-      >
+    <StyledContainer
+      isFocused={onFocus}
+      isError={isError}
+      style={containerStyle}
+    >
+      <StyledWrapper>
+        {leftComponent}
         <StyledInputContainer>
-          {typeof leftIcon === 'string' && IconList.includes(leftIcon) ? (
-            <StyledIconBox
-              style={{
-                paddingLeft: '10px',
-                width: 'var(--Sizing-5, 24px)',
-                height: 'var(--Sizing-5, 24px)',
-              }}
-            >
-              {Icons(leftIcon)}
-            </StyledIconBox>
-          ) : (
-            leftIcon
-          )}
           {leftUnit && (
             <KaText
               fontType="body/md_400"
@@ -169,7 +126,6 @@ export const KaTextInput = ({
                 color: disabled
                   ? getTheme('elevation', '7')
                   : getTheme('elevation', '4'),
-                marginLeft: leftIcon ? '3px' : '8px',
               }}
             >
               {leftUnit}
@@ -197,26 +153,30 @@ export const KaTextInput = ({
                 color: disabled
                   ? getTheme('elevation', '7')
                   : getTheme('elevation', '4'),
-                marginRight: rightIcon ? '3px' : '10px',
               }}
             >
               {rightUnit}
             </KaText>
           )}
-          {typeof rightIcon === 'string' && IconList.includes(rightIcon) ? (
-            <StyledIconBox
-              style={{
-                width: 'var(--Sizing-5, 24px)',
-                height: 'var(--Sizing-5, 24px)',
-                paddingRight: '10px',
+          {inputProps?.value && (
+            <StyledClose
+              onClick={(): void => {
+                inputProps?.onChangeText?.('')
               }}
             >
-              {Icons(rightIcon)}
-            </StyledIconBox>
-          ) : (
-            rightIcon
+              <MathClose
+                style={{
+                  width: 'var(--Sizing-3, 12px)',
+                  height: 'var(--Sizing-3, 12px)',
+                }}
+                fill={
+                  disabled ? getTheme('elevation', '7') : getTheme('gray', '0')
+                }
+              />
+            </StyledClose>
           )}
         </StyledInputContainer>
+        {rightComponent}
       </StyledWrapper>
     </StyledContainer>
   )
