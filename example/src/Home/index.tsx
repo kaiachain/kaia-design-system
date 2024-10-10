@@ -169,17 +169,20 @@ const Home = ({
               value: value,
               onChangeText: setValue,
             }}
-          />{' '}
+          />
           <KaTextInput
             inputProps={{
+              type: 'password',
               placeholder: 'placeholder',
               value: value,
               onChangeText: setValue,
+              style: { color: 'red' },
             }}
             rightUnit="$"
           />
           <KaTextInput
             inputProps={{
+              type: 'number',
               placeholder: 'placeholder',
               value: value,
               onChangeText: setValue,
@@ -202,6 +205,8 @@ const Home = ({
           />
           <KaTextInput
             inputProps={{
+              value,
+              onChangeText: setValue,
               placeholder: 'placeholder',
             }}
             rightComponent={<KaButton size="md">Confirm</KaButton>}
@@ -209,6 +214,8 @@ const Home = ({
           />
           <KaTextInput
             inputProps={{
+              value,
+              onChangeText: setValue,
               placeholder: 'search here and see the sentence is very long',
             }}
             leftComponent={
@@ -221,6 +228,8 @@ const Home = ({
           />
           <KaTextInput
             inputProps={{
+              value,
+              onChangeText: setValue,
               placeholder: 'search here and see the sentence is very long',
             }}
             leftComponent={
@@ -235,12 +244,12 @@ const Home = ({
           />
           <KaTextInput
             inputProps={{
+              value,
+              onChangeText: setValue,
               placeholder: 'search here and see the sentence is very long',
             }}
-            //  leftComponent="search"
             leftUnit="$"
             rightUnit="Unit"
-            //rightComponent={'close'}
             disabled={true}
           />
         </StyledSection>
