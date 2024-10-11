@@ -125,8 +125,18 @@ const NeonBar = styled.div`
   border-radius: 6px;
   justify-content: center;
 `
+type FormImgProps = {
+  src: string
+  style?: React.CSSProperties
+}
+const StyledFormImg = styled.img<FormImgProps>`
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  margin-right: 12px;
+`
 interface KaSelectBoxOptionListType {
-  id: string
+  value: string
   label: string
   subItems?: KaSelectBoxOptionListType[]
   isDisabled?: boolean
@@ -158,13 +168,13 @@ export const KaSelectBox = ({
   const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set())
   const [selected, setSelected] = useState('')
 
-  const toggleExpand = (id: string) => {
+  const toggleExpand = (value: string) => {
     setExpandedItems((prev) => {
       const newSet = new Set(prev)
-      if (newSet.has(id)) {
-        newSet.delete(id)
+      if (newSet.has(value)) {
+        newSet.delete(value)
       } else {
-        newSet.add(id)
+        newSet.add(value)
       }
       return newSet
     })
@@ -179,7 +189,7 @@ export const KaSelectBox = ({
         setSelected(option.label)
       }
       onSelect('')
-      toggleExpand(option.id)
+      toggleExpand(option.value)
     } else {
       if (!isChild) {
         setSelected('')
@@ -198,13 +208,14 @@ export const KaSelectBox = ({
   ) => {
     const isSelected =
       option.label === selectedValue || option.label === selected
-    const isExpanded = expandedItems.has(option.id)
+    const isExpanded = expandedItems.has(option.value)
+    const src = option.img
 
     return (
-      <View key={`Items-${option.id}-${level}`}>
+      <View key={`Items-${option.value}-${level}`}>
         <StyledDropdownItem
           isSelected={isSelected && !isChild}
-          key={`option-${option.id}`}
+          key={`option-${option.value}`}
           level={indentIcon ? level : level + 1}
           onClick={() => {
             if (!option.isDisabled) {
@@ -219,6 +230,7 @@ export const KaSelectBox = ({
           <Row>
             {!isChild && isSelected && <NeonBar />}
             {indentIcon && isChild && <StyledIconindent />}
+            {src && <StyledFormImg src={src} style={{ borderRadius: '50%' }} />}
             <KaText
               fontType={isSelected ? 'body/md_700' : 'body/md_400'}
               color={isSelected ? getTheme('gray', '0') : getTheme('gray', '2')}

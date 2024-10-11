@@ -111,42 +111,53 @@ const Home = ({
         </StyledSection>
         <StyledSection>
           <KaText fontType="title/lg_700">SelectBox </KaText>
-          <KaText fontType="body/lg_400">Normal with disabled option</KaText>
-          <KaSelectBox
-            selectedValue={selected}
-            onSelect={setSelected}
-            optionList={[
-              { id: '0', label: 'Option 1' },
-              { id: '1', label: 'Disabled Option2', isDisabled: true },
-              { id: '2', label: 'Option 3' },
-            ]}
-          />
           <KaText fontType="body/lg_400">
-            Width with nesting choices and maxheight
+            Normal with disabled option with img
           </KaText>
           <KaSelectBox
             selectedValue={selected}
             onSelect={setSelected}
-            width="300px"
+            optionList={[
+              {
+                value: '0',
+                label: 'Option 1',
+                img: 'https://square-file.qa.klaytn.net/files/profile/default.png',
+              },
+              { value: '1', label: 'Disabled Option2', isDisabled: true },
+              { value: '2', label: 'Option 3' },
+            ]}
+          />
+          <KaText fontType="body/lg_400">
+            Width with nesting choices with img and maxheight
+          </KaText>
+          <KaSelectBox
+            selectedValue={selected}
+            onSelect={setSelected}
+            containerStyle={{ width: '500px' }}
             maxHeight="150px"
             optionList={[
               {
-                id: '7',
+                value: '7',
                 label: 'Group 1',
                 subItems: [
                   {
-                    id: '3',
+                    value: '3',
                     label: 'SubItem 1',
+                    img: 'https://square-file.qa.klaytn.net/files/profile/default.png',
                     subItems: [
-                      { id: '5', label: 'More SubItem 1' },
-                      { id: '6', label: 'More SubItem 2' },
+                      {
+                        value: '5',
+                        label: 'More SubItem 1',
+                        img: 'https://square-file.qa.klaytn.net/files/profile/default.png',
+                      },
+                      { value: '6', label: 'More SubItem 2' },
                     ],
                   },
-                  { id: '4', label: 'SubItem 2' },
+                  { value: '4', label: 'SubItem 2' },
                 ],
               },
-              { id: '8', label: 'Option 4' },
-              { id: '9', label: 'Option 5' },
+              { value: '8', label: 'Option 4' },
+              { value: '9', label: 'Option 5' },
             ]}
           ></KaSelectBox>
           <KaText fontType="body/lg_400">
@@ -155,39 +166,39 @@ const Home = ({
           <KaSelectBox
             selectedValue={selected}
             onSelect={setSelected}
-            width="300px"
+            containerStyle={{ width: '300px' }}
             indentIcon={false}
             placeholder="Here is a placeholder"
             optionList={[
               {
-                id: '10',
+                value: '10',
                 label: 'Example very long choice and it will be abbreviated',
               },
-              { id: '11', label: 'Option 6' },
+              { value: '11', label: 'Option 6' },
               {
-                id: '12',
+                value: '12',
                 label: 'Option 7',
                 subItems: [
                   {
-                    id: '15',
+                    value: '15',
                     label: 'Animals',
                     subItems: [
-                      { id: '25', label: 'Tiger' },
-                      { id: '26', label: 'Dog' },
+                      { value: '25', label: 'Tiger' },
+                      { value: '26', label: 'Dog' },
                     ],
                   },
                   {
-                    id: '24',
+                    value: '24',
                     label: 'Colors',
                     subItems: [
-                      { id: '27', label: 'Yellow' },
-                      { id: '28', label: 'Orange' },
+                      { value: '27', label: 'Yellow' },
+                      { value: '28', label: 'Orange' },
                     ],
                   },
                 ],
               },
-              { id: '13', label: 'Option 8' },
-              { id: '14', label: 'Option 9' },
+              { value: '13', label: 'Option 8' },
+              { value: '14', label: 'Option 9' },
             ]}
           ></KaSelectBox>
         </StyledSection>
