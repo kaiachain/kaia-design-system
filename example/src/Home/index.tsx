@@ -138,7 +138,7 @@ const Home = ({
             optionList={[
               {
                 value: '7',
-                label: 'Group 1',
+                label: 'Option Group 1',
                 subItems: [
                   {
                     value: '3',
@@ -199,6 +199,32 @@ const Home = ({
               },
               { value: '13', label: 'Option 8' },
               { value: '14', label: 'Option 9' },
+            ]}
+          ></KaSelectBox>
+          <KaText fontType="body/lg_400">Disabled</KaText>
+          <KaSelectBox
+            disabled={true}
+            selectedValue={selected}
+            onSelect={setSelected}
+            placeholder="Disabled selectbox"
+            optionList={[
+              {
+                value: '15',
+                label: 'will not be shown',
+              },
+            ]}
+          ></KaSelectBox>
+          <KaText fontType="body/lg_400">Error</KaText>
+          <KaSelectBox
+            isError={true}
+            selectedValue={selected}
+            onSelect={setSelected}
+            placeholder="Error selectbox"
+            optionList={[
+              {
+                value: '16',
+                label: 'Error',
+              },
             ]}
           ></KaSelectBox>
         </StyledSection>

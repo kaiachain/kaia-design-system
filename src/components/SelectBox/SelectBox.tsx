@@ -12,13 +12,16 @@ import _ from 'lodash'
 const StyledDropdown = styled.div`
   position: relative;
   flex: 1;
-  width: '100%';
+  width: 100%;
 
   display: flex;
   flex-direction: column;
 `
 
-const StyledDropdownToggle = styled.div`
+const StyledDropdownToggle = styled.div<{
+  isError?: boolean
+  isFocused?: boolean
+}>`
   cursor: pointer;
   display: flex;
   flex-direction: row;
@@ -26,15 +29,18 @@ const StyledDropdownToggle = styled.div`
   align-items: center;
   border-radius: 999px;
   background-color: ${themeFunc('elevation', '9')};
-  padding: 9px 14px;
-  gap: 8px;
-  border: 1px solid;
+  padding: 10px 14px;
+
+  outline: ${({ isError }) => (isError ? '1px' : '4px')} solid;
+  outline-color: ${({ isFocused, isError }) =>
+    isError
+      ? themeFunc('danger', '6')
+      : isFocused
+        ? themeFunc('elevation', '8')
+        : 'transparent'};
+
   ::after {
     display: none;
-  }
-  :focus {
-    box-shadow: none !important;
-    outline: none;
   }
 `
 
@@ -82,6 +88,7 @@ const StyledDropdownMenu = styled.div<{ maxHeight?: string }>`
   box-shadow: 0px 4px 12px 0px rgba(25, 26, 28, 0.05);
   max-height: ${(props) => props.maxHeight || 'none'};
   overflow-y: ${(props) => (props.maxHeight ? 'auto' : 'visible')};
+  margin-top: 10px;
 `
 const View = styled.div`
   display: flex;
@@ -151,6 +158,8 @@ export interface KaSelectBoxProps {
   indentIcon?: boolean
   containerStyle?: React.CSSProperties
   maxHeight?: string
+  isError?: boolean
+  disabled?: boolean
 }
 
 export const KaSelectBox = ({
@@ -161,9 +170,12 @@ export const KaSelectBox = ({
   containerStyle,
   maxHeight,
   indentIcon = true,
+  isError,
+  disabled,
 }: KaSelectBoxProps): ReactElement => {
   const { getTheme } = useKaTheme()
   const [isOpen, setIsOpen] = useState(false)
+  const [onFocus, setOnFocus] = useState(false)
 
   const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set())
   const [selected, setSelected] = useState('')
@@ -197,6 +209,7 @@ export const KaSelectBox = ({
       onSelect(option.label)
       setExpandedItems(new Set())
       setIsOpen(false)
+      setOnFocus(false)
     }
   }
 
@@ -271,20 +284,27 @@ export const KaSelectBox = ({
         }
         setExpandedItems(new Set())
         setIsOpen(false)
+        setOnFocus(false)
       }}
     >
       <StyledDropdown style={containerStyle}>
         <StyledDropdownToggle
           onClick={(): void => {
-            setIsOpen(!isOpen)
+            if (!disabled) {
+              setIsOpen(!isOpen)
+              setOnFocus(!onFocus)
+            }
           }}
+          isFocused={onFocus}
+          isError={isError}
           style={{
-            borderColor: 'transparent',
+            cursor: disabled ? 'not-allowed' : 'pointer',
+            opacity: disabled ? 0.3 : 1,
           }}
         >
           <KaText
             fontType="body/md_600"
-            color={getTheme('gray', '0')}
+            color={isError ? getTheme('danger', '6') : getTheme('gray', '0')}
             style={{
               width: '92%',
               overflow: 'hidden',
