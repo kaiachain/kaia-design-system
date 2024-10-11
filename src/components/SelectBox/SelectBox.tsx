@@ -142,7 +142,7 @@ const StyledFormImg = styled.img<FormImgProps>`
   width: 20px;
   margin-right: 12px;
 `
-interface KaSelectBoxOptionListType {
+export interface KaSelectBoxOptionListType {
   value: string
   label: string
   subItems?: KaSelectBoxOptionListType[]
