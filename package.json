@@ -1,6 +1,6 @@
 {
   "name": "@kaiachain/kaia-design-system",
-  "version": "0.1.13",
+  "version": "0.1.14",
   "license": "MIT",
   "type": "module",
   "main": "dist/index.js",
@@ -38,6 +38,7 @@
     "@testing-library/jest-dom": "^6.4.6",
     "@testing-library/react": "^16.0.0",
     "@types/jest": "^29.5.12",
+    "@types/lodash": "^4.17.10",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "babel-jest": "^29.7.0",
@@ -54,6 +55,7 @@
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
     "react": "^18.3.1",
+    "react-click-away-listener": "^2.2.3",
     "react-dom": "^18.3.1"
   }
 }
