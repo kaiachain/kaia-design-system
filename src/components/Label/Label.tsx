@@ -24,6 +24,9 @@ export type KaLabelProps = {
   size?: 'xs' | 'sm' | 'md' | 'lg'
   color: 'red' | 'gray' | 'blue' | 'green' | 'yellow' | 'primary'
   type?: 'solid' | 'pale' | 'line' | 'paleBorder'
+  containerStyle?: React.CSSProperties
+  fontStyle?: React.CSSProperties
+  onClick?: () => void
 }
 
 export const KaLabel = ({
@@ -31,6 +34,9 @@ export const KaLabel = ({
   text,
   color,
   type = 'solid',
+  containerStyle,
+  fontStyle,
+  onClick,
 }: KaLabelProps): ReactElement => {
   const { getTheme } = useKaTheme()
 
@@ -121,9 +127,12 @@ export const KaLabel = ({
         backgroundColor,
         outlineColor,
         height,
+        cursor: onClick ? 'pointer' : 'default',
+        ...containerStyle,
       }}
+      onClick={onClick}
     >
-      <KaText fontType={fontType} color={fontColor}>
+      <KaText fontType={fontType} color={fontColor} style={fontStyle}>
         {text}
       </KaText>
     </StyledContainer>

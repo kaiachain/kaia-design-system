@@ -103,11 +103,23 @@ const Home = ({
         </StyledSection>
         <StyledSection>
           <KaText fontType="title/lg_700">Labels</KaText>
-
-          <KaLabel size="md" color="red" text="text" type="solid" />
-          <KaLabel size="md" color="red" text="text" type="pale" />
+          <KaLabel size="xs" color="red" text="text" type="solid" />
+          <KaLabel size="sm" color="red" text="text" type="pale" />
           <KaLabel size="md" color="red" text="text" type="line" />
-          <KaLabel size="md" color="red" text="text" type="paleBorder" />
+          <KaLabel size="lg" color="red" text="text" type="paleBorder" />
+          <KaLabel
+            color="blue"
+            text="text"
+            type="solid"
+            containerStyle={{ width: 200 }}
+          />
+          <KaLabel
+            color="green"
+            text="text"
+            type="solid"
+            fontStyle={{ backgroundColor: 'red' }}
+            onClick={() => window.alert('clicked')}
+          />
         </StyledSection>
         <StyledSection>
           <KaText fontType="title/lg_700">SelectBox </KaText>
