@@ -1,13 +1,14 @@
 import { ReactElement, useState } from 'react'
 import styled from '@emotion/styled'
-import { font, themeFunc } from '../../styles'
-import { useKaTheme } from '../../hooks'
-import ClickAwayListener from 'react-click-away-listener'
-import { KaText } from '../Text/Text'
-import Chevron_bottom from '../../icons/Chevron_bottom.svg'
-import Indent_DownRight from '../../icons/Indent_DownRight.svg'
 import { keyframes } from '@emotion/react'
 import _ from 'lodash'
+import ClickAwayListener from 'react-click-away-listener'
+
+import { font, themeFunc } from '../../styles'
+import { useKaTheme } from '../../hooks'
+import { KaText } from '../Text/Text'
+import ChevronBottom from '../../icons/ChevronBottom.svg'
+import IndentDownRight from '../../icons/IndentDownRight.svg'
 
 const StyledDropdown = styled.div`
   position: relative;
@@ -44,7 +45,7 @@ const StyledDropdownToggle = styled.div<{
   }
 `
 
-const StyledIconChevronBottom = styled(Chevron_bottom)`
+const StyledIconChevronBottom = styled(ChevronBottom)`
   transition: transform 0.2s ease-in-out;
   position: absolute;
   right: 16px;
@@ -52,7 +53,7 @@ const StyledIconChevronBottom = styled(Chevron_bottom)`
   height: 16px;
   fill: ${themeFunc('gray', '0')};
 `
-const StyledIconindent = styled(Indent_DownRight)`
+const StyledIconindent = styled(IndentDownRight)`
   transition: transform 0.2s ease-in-out;
   margin-right: 12px;
   width: 16px;
@@ -323,10 +324,8 @@ export const KaSelectBox = ({
         {isOpen && (
           <StyledDropdownMenu maxHeight={maxHeight}>
             <View>
-              {_.map(
-                optionList,
-                (option: KaSelectBoxOptionListType, i: number) =>
-                  renderItem(option, 0, false, indentIcon),
+              {_.map(optionList, (option: KaSelectBoxOptionListType) =>
+                renderItem(option, 0, false, indentIcon),
               )}
             </View>
           </StyledDropdownMenu>

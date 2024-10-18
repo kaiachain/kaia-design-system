@@ -142,24 +142,6 @@ const Buttons = () => {
         <KaButton
           disabled
           rightIcon="right"
-          type="red"
-          size="xl"
-          onClick={() => alert('?')}
-        >
-          Button
-        </KaButton>
-        <KaButton
-          disabled
-          rightIcon="right"
-          type="tertiary"
-          size="xl"
-          onClick={() => alert('?')}
-        >
-          Button
-        </KaButton>
-        <KaButton
-          disabled
-          rightIcon="right"
           type="tertiary-tint"
           size="xl"
           onClick={() => alert('?')}

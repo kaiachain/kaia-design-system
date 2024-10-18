@@ -17,7 +17,6 @@ export type KaTextProps = {
   fontType: KaFontType
   children: ReactNode
   color?: string
-  inBorder?: boolean
   center?: boolean
 } & HTMLAttributes<HTMLDivElement>
 
@@ -25,7 +24,6 @@ export const KaText = ({
   fontType,
   children,
   color,
-  inBorder = false,
   center,
   style,
   ...rest

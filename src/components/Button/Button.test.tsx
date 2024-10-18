@@ -11,8 +11,11 @@ jest.mock('../../hooks', () => ({
   }),
 }))
 
-jest.mock('../../icons/Chevron_right.svg', () => () => <div>Chevron_right</div>)
-jest.mock('../../icons/ConfirmNormal.svg', () => () => <div>ConfirmNormal</div>)
+jest.mock('../../icons/ArrowLineUpRight.svg', () => () => (
+  <div>ArrowLineUpRight</div>
+))
+jest.mock('../../icons/ChevronRight.svg', () => () => <div>ChevronRight</div>)
+jest.mock('../../icons/Check.svg', () => () => <div>Check</div>)
 
 describe('KaButton component', () => {
   test('renders the button with correct text', () => {
@@ -48,7 +51,7 @@ describe('KaButton component', () => {
       </ThemeProvider>,
     )
 
-    const iconElement = getByText(/ConfirmNormal/i)
+    const iconElement = getByText(/Check/i)
     expect(iconElement).toBeInTheDocument()
   })
 
@@ -61,7 +64,7 @@ describe('KaButton component', () => {
       </ThemeProvider>,
     )
 
-    const iconElement = getByText(/Chevron_right/i)
+    const iconElement = getByText(/ChevronRight/i)
     expect(iconElement).toBeInTheDocument()
   })
 

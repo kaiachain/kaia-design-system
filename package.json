@@ -1,6 +1,6 @@
 {
   "name": "@kaiachain/kaia-design-system",
-  "version": "0.1.14",
+  "version": "1.0.0",
   "license": "MIT",
   "type": "module",
   "main": "dist/index.js",
@@ -9,7 +9,8 @@
   "scripts": {
     "build": "rollup -c rollup.config.js",
     "prepublishOnly": "yarn build",
-    "test": "jest"
+    "test": "jest",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
   },
   "files": [
     "dist"
@@ -49,7 +50,12 @@
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-svgr": "^2.0.0",
     "ts-jest": "^29.1.5",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.5",
+    "eslint": "^8.57.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.6",
+    "@typescript-eslint/eslint-plugin": "^7.2.0",
+    "@typescript-eslint/parser": "^7.2.0"
   },
   "dependencies": {
     "@emotion/react": "^11.11.4",

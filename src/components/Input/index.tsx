@@ -3,7 +3,7 @@ import styled from '@emotion/styled'
 import { font, themeFunc } from '../../styles'
 import { KaText } from '../Text/Text'
 import { useKaTheme } from '../../hooks'
-import MathClose from '../../icons/MathClose.svg'
+import X from '../../icons/X.svg'
 
 interface StyledContainerProps {
   isFocused: boolean
@@ -51,6 +51,7 @@ const StyledClose = styled.div`
 `
 
 const StyledInput = styled.input<{ isError?: boolean }>`
+  width: 100%;
   flex: 1;
   ${font['body/md_600'].styles};
   height: var(--Sizing-8, 40px);
@@ -111,6 +112,7 @@ export const KaTextInput = ({
 }: KaTextInputProps): ReactElement => {
   const { getTheme } = useKaTheme()
   const [onFocus, setOnFocus] = useState(false)
+  const { onChangeText, ...inputRest } = inputProps
 
   return (
     <StyledContainer
@@ -143,10 +145,10 @@ export const KaTextInput = ({
             }}
             isError={isError}
             onChange={({ target: { value } }): void => {
-              inputProps.onChangeText?.(value)
+              onChangeText(value)
             }}
             disabled={disabled}
-            {...inputProps}
+            {...inputRest}
           />
           {rightUnit && (
             <KaText
@@ -166,7 +168,7 @@ export const KaTextInput = ({
                 inputProps.onChangeText?.('')
               }}
             >
-              <MathClose
+              <X
                 style={{
                   width: 'var(--Sizing-3, 12px)',
                   height: 'var(--Sizing-3, 12px)',
