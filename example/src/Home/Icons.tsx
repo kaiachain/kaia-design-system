@@ -11,10 +11,7 @@ const Icons = () => {
         fill="red"
       />
       <KaIcon.CircleQuestion style={{ width: 30, height: 20 }} fill="green" />
-      <KaIcon.ArrowLineUpRight
-        style={{ width: 50, height: 50 }}
-        fill="purple"
-      />
+      <KaIcon.ArrowBarUpRight style={{ width: 50, height: 50 }} fill="purple" />
     </Row>
   )
 }

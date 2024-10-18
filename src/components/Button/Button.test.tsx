@@ -11,8 +11,8 @@ jest.mock('../../hooks', () => ({
   }),
 }))
 
-jest.mock('../../icons/ArrowLineUpRight.svg', () => () => (
-  <div>ArrowLineUpRight</div>
+jest.mock('../../icons/ArrowBarUpRight.svg', () => () => (
+  <div>ArrowBarUpRight</div>
 ))
 jest.mock('../../icons/ChevronRight.svg', () => () => <div>ChevronRight</div>)
 jest.mock('../../icons/Check.svg', () => () => <div>Check</div>)
