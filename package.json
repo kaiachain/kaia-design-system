@@ -1,6 +1,6 @@
 {
   "name": "@kaiachain/kaia-design-system",
-  "version": "0.1.14",
+  "version": "1.0.0",
   "license": "MIT",
   "type": "module",
   "main": "dist/index.js",
