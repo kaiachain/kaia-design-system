@@ -1,12 +1,12 @@
-import ArrowLineUpRIght from './ArrowLineUpRIght.svg';
+import ArrowLineUpRight from './ArrowLineUpRight.svg';
 import ArrowUpRight from './ArrowUpRight.svg';
 import Check from './Check.svg';
 import ChevronBottom from './ChevronBottom.svg';
 import ChevronLeft from './ChevronLeft.svg';
 import ChevronRight from './ChevronRight.svg';
 import ChevronTop from './ChevronTop.svg';
-import CircleIconInfoFilled from './CircleIconInfoFilled.svg';
-import CircleIconQuestion from './CircleIconQuestion.svg';
+import CircleInfoFilled from './CircleInfoFilled.svg';
+import CircleQuestion from './CircleQuestion.svg';
 import IndentDownRight from './IndentDownRight.svg';
 import Minus from './Minus.svg';
 import Paste from './Paste.svg';
@@ -15,15 +15,15 @@ import Search from './Search.svg';
 import X from './X.svg';
 
 export default {
-  ArrowLineUpRIght,
+  ArrowLineUpRight,
   ArrowUpRight,
   Check,
   ChevronBottom,
   ChevronLeft,
   ChevronRight,
   ChevronTop,
-  CircleIconInfoFilled,
-  CircleIconQuestion,
+  CircleInfoFilled,
+  CircleQuestion,
   IndentDownRight,
   Minus,
   Paste,

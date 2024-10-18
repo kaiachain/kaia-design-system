@@ -5,7 +5,7 @@ import { darkTheme, KaFontType, themeFunc } from '../../styles'
 import { KaText } from '../Text/Text'
 import { useKaTheme } from '../../hooks'
 import ChevronRight from '../../icons/ChevronRight.svg'
-import ArrowLineUpRIght from '../../icons/ArrowLineUpRIght.svg'
+import ArrowLineUpRight from '../../icons/ArrowLineUpRight.svg'
 import Check from '../../icons/Check.svg'
 
 const StyledButton = styled.button`
@@ -236,7 +236,7 @@ export const KaButton = ({
         )
       case 'upright':
         return (
-          <ArrowLineUpRIght
+          <ArrowLineUpRight
             style={{ width: iconSize, height: iconSize }}
             fill={rest.disabled ? disabledColor : iconColor}
           />

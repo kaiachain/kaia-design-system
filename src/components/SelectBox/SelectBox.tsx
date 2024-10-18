@@ -324,10 +324,8 @@ export const KaSelectBox = ({
         {isOpen && (
           <StyledDropdownMenu maxHeight={maxHeight}>
             <View>
-              {_.map(
-                optionList,
-                (option: KaSelectBoxOptionListType, i: number) =>
-                  renderItem(option, 0, false, indentIcon),
+              {_.map(optionList, (option: KaSelectBoxOptionListType) =>
+                renderItem(option, 0, false, indentIcon),
               )}
             </View>
           </StyledDropdownMenu>

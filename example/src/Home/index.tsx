@@ -27,6 +27,16 @@ const StyledSection = styled.section`
   padding-bottom: 20px;
 `
 
+const StyledFixed = styled(StyledSection)`
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  padding: 10px 20px;
+  background-color: ${({ theme }) => theme.gray[8]};
+  z-index: 1;
+`
+
 const StyledCustom = styled.div`
   background-color: ${({ theme }) => theme.customColor.text};
   color: ${({ theme }) => theme.customColor.bg};
@@ -45,16 +55,7 @@ const Home = ({
 
   return (
     <StyledContainer style={{ backgroundColor: getTheme('gray', '10') }}>
-      <StyledSection
-        style={{
-          position: 'fixed',
-          width: '100%',
-          top: 0,
-          left: 0,
-          padding: 20,
-          backgroundColor: getTheme('gray', '8'),
-        }}
-      >
+      <StyledFixed>
         <KaText fontType="title/sm_700">Toggle Theme</KaText>
         <Row>
           <label>
@@ -71,7 +72,7 @@ const Home = ({
             <KaText fontType="body/md_600">Dark</KaText>
           </label>
         </Row>
-      </StyledSection>
+      </StyledFixed>
       <div>
         <StyledSection>
           <KaText fontType="title/lg_700">Texts</KaText>
