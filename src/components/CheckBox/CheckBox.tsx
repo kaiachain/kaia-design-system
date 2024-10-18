@@ -1,9 +1,8 @@
 import { ReactElement } from 'react'
 import styled from '@emotion/styled'
 import { css } from '@emotion/react'
-import { themeFunc } from '../../styles'
 import { useKaTheme } from '../../hooks'
-import ConfirmNormal from '../../icons/ConfirmNormal.svg'
+import Check from '../../icons/Check.svg'
 
 const CheckBoxInput = styled.div<{
   disabled?: boolean
@@ -82,7 +81,7 @@ export const KaCheckBox = <T,>({
       checked={checked}
     >
       {checked && (
-        <ConfirmNormal
+        <Check
           fill={getTheme('gray', '10')}
           style={{
             width: checkSize,

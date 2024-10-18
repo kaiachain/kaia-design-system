@@ -4,9 +4,9 @@ import styled from '@emotion/styled'
 import { darkTheme, KaFontType, themeFunc } from '../../styles'
 import { KaText } from '../Text/Text'
 import { useKaTheme } from '../../hooks'
-import Chevron_right from '../../icons/Chevron_right.svg'
-import Arrowfatline_upright from '../../icons/Arrowfatline_upright.svg'
-import ConfirmNormal from '../../icons/ConfirmNormal.svg'
+import ChevronRight from '../../icons/ChevronRight.svg'
+import ArrowLineUpRIght from '../../icons/ArrowLineUpRIght.svg'
+import Check from '../../icons/Check.svg'
 
 const StyledButton = styled.button`
   cursor: pointer;
@@ -222,21 +222,21 @@ export const KaButton = ({
     switch (type) {
       case 'check':
         return (
-          <ConfirmNormal
+          <Check
             style={{ width: iconSize, height: iconSize }}
             fill={rest.disabled ? disabledColor : iconColor}
           />
         )
       case 'right':
         return (
-          <Chevron_right
+          <ChevronRight
             style={{ width: iconSize, height: iconSize }}
             fill={rest.disabled ? disabledColor : iconColor}
           />
         )
       case 'upright':
         return (
-          <Arrowfatline_upright
+          <ArrowLineUpRIght
             style={{ width: iconSize, height: iconSize }}
             fill={rest.disabled ? disabledColor : iconColor}
           />
