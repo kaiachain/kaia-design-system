@@ -94,7 +94,7 @@ const StyledLedLineIconBox = styled(StyledIconBox)<{ disabled?: boolean }>`
 const IconList = ['check', 'right', 'upright'] as const
 type IconType = (typeof IconList)[number]
 
-interface KaButtonProps {
+export interface KaButtonProps {
   leftIcon?: IconType | ReactElement
   rightIcon?: IconType | ReactElement
   type?:

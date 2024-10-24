@@ -1,4 +1,5 @@
 export default {
+  plugins: ['lodash'],
   presets: [
     '@babel/preset-env',
     '@babel/preset-react',

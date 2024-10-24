@@ -39,6 +39,15 @@ export default {
       extensions: ['.js', '.jsx', '.ts', '.tsx'],
       babelHelpers: 'bundled',
     }),
-    terser(),
+    terser({
+      compress: {
+        drop_console: true,
+        passes: 3, // 압축을 3번 반복
+        pure_funcs: ['console.log'], // console.log 함수 제거
+      },
+      mangle: {
+        toplevel: true, // 최상위 변수 및 함수 이름도 압축
+      },
+    }),
   ],
 }
