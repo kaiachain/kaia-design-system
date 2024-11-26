@@ -84,6 +84,7 @@ export interface KaTextInputProps {
     placeholder?: string
     value: string
     onChangeText: (value: string) => void
+    onKeyDown?: (event: React.KeyboardEvent) => void
     style?: React.CSSProperties
   }
   leftComponent?: ReactElement
