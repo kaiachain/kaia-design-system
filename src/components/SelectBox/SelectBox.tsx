@@ -1,4 +1,4 @@
-import { ReactElement, useState } from 'react'
+import { ReactElement, useMemo, useState } from 'react'
 import styled from '@emotion/styled'
 import { keyframes } from '@emotion/react'
 import _ from 'lodash'
@@ -163,6 +163,25 @@ export interface KaSelectBoxProps {
   disabled?: boolean
 }
 
+const getLabelForValue = (
+  options: KaSelectBoxOptionListType[],
+  value: string,
+): string | undefined => {
+  for (const option of options) {
+    if (option.value === value) {
+      return option.label
+    }
+
+    if (option.subItems) {
+      const childLabel = getLabelForValue(option.subItems, value)
+      if (childLabel) {
+        return childLabel
+      }
+    }
+  }
+  return undefined
+}
+
 export const KaSelectBox = ({
   optionList,
   placeholder,
@@ -199,7 +218,7 @@ export const KaSelectBox = ({
   ) => {
     if (option.subItems) {
       if (!isChild) {
-        setSelected(option.label)
+        setSelected(option.value)
       }
       onSelect('')
       toggleExpand(option.value)
@@ -207,12 +226,20 @@ export const KaSelectBox = ({
       if (!isChild) {
         setSelected('')
       }
-      onSelect(option.label)
+      onSelect(option.value)
       setExpandedItems(new Set())
       setIsOpen(false)
       setOnFocus(false)
     }
   }
+
+  const selectedLabel = useMemo(
+    () =>
+      getLabelForValue(optionList, selectedValue) ||
+      placeholder ||
+      'Not Selected',
+    [optionList, selectedValue, placeholder],
+  )
 
   const renderItem = (
     option: KaSelectBoxOptionListType,
@@ -221,7 +248,7 @@ export const KaSelectBox = ({
     indentIcon: boolean,
   ) => {
     const isSelected =
-      option.label === selectedValue || option.label === selected
+      option.value === selectedValue || option.value === selected
     const isExpanded = expandedItems.has(option.value)
     const src = option.img
 
@@ -313,7 +340,7 @@ export const KaSelectBox = ({
               whiteSpace: 'nowrap',
             }}
           >
-            {selectedValue || placeholder || 'Not Selected'}
+            {selectedLabel}
           </KaText>
           {isOpen ? (
             <StyledIconChevronBottom style={{ transform: 'rotate(-180deg)' }} />
