@@ -170,7 +170,6 @@ export interface KaSelectBoxProps {
   maxHeight?: string
   isError?: boolean
   disabled?: boolean
-  showSelectedImg?: boolean
 }
 
 const getLabelForValue = (
@@ -207,6 +206,7 @@ const getImgForValue = (
       }
     }
   }
+  return undefined
 }
 
 export const KaSelectBox = ({
@@ -219,7 +219,6 @@ export const KaSelectBox = ({
   indentIcon = true,
   isError,
   disabled,
-  showSelectedImg,
 }: KaSelectBoxProps): ReactElement => {
   const { getTheme } = useKaTheme()
   const [isOpen, setIsOpen] = useState(false)
@@ -359,13 +358,11 @@ export const KaSelectBox = ({
           }}
         >
           <Row style={{ alignItems: 'center', flex: 1 }}>
-            {showSelectedImg &&
-              selectedValue &&
-              getImgForValue(optionList, selectedValue) && (
-                <StyledSelectedImg
-                  src={getImgForValue(optionList, selectedValue)!}
-                />
-              )}
+            {selectedValue && getImgForValue(optionList, selectedValue) && (
+              <StyledSelectedImg
+                src={getImgForValue(optionList, selectedValue)!}
+              />
+            )}
 
             <KaText
               fontType="body/md_600"
