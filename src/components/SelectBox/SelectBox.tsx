@@ -1,4 +1,4 @@
-import { ReactElement, useState } from 'react'
+import { ReactElement, useMemo, useState } from 'react'
 import styled from '@emotion/styled'
 import { keyframes } from '@emotion/react'
 import _ from 'lodash'
@@ -173,6 +173,42 @@ export interface KaSelectBoxProps {
   showSelectedImg?: boolean
 }
 
+const getLabelForValue = (
+  options: KaSelectBoxOptionListType[],
+  value: string,
+): string | undefined => {
+  for (const option of options) {
+    if (option.value === value) {
+      return option.label
+    }
+
+    if (option.subItems) {
+      const childLabel = getLabelForValue(option.subItems, value)
+      if (childLabel) {
+        return childLabel
+      }
+    }
+  }
+  return undefined
+}
+
+const getImgForValue = (
+  options: KaSelectBoxOptionListType[],
+  value: string,
+): string | undefined => {
+  for (const option of options) {
+    if (option.value === value) {
+      return option.img
+    }
+    if (option.subItems) {
+      const childImg = getImgForValue(option.subItems, value)
+      if (childImg) {
+        return childImg
+      }
+    }
+  }
+}
+
 export const KaSelectBox = ({
   optionList,
   placeholder,
@@ -224,39 +260,14 @@ export const KaSelectBox = ({
       setOnFocus(false)
     }
   }
-  const getLabelForValue = (
-    options: KaSelectBoxOptionListType[],
-    value: string,
-  ): string | undefined => {
-    for (const option of options) {
-      if (option.value === value) {
-        return option.label
-      }
-      if (option.subItems) {
-        const childLabel = getLabelForValue(option.subItems, value)
-        if (childLabel) {
-          return childLabel
-        }
-      }
-    }
-    return undefined
-  }
-  const getImgForValue = (
-    options: KaSelectBoxOptionListType[],
-    value: string,
-  ): string | undefined => {
-    for (const option of options) {
-      if (option.value === value) {
-        return option.img
-      }
-      if (option.subItems) {
-        const childImg = getImgForValue(option.subItems, value)
-        if (childImg) {
-          return childImg
-        }
-      }
-    }
-  }
+
+  const selectedLabel = useMemo(
+    () =>
+      getLabelForValue(optionList, selectedValue) ||
+      placeholder ||
+      'Not Selected',
+    [optionList, selectedValue, placeholder],
+  )
 
   const renderItem = (
     option: KaSelectBoxOptionListType,
@@ -367,9 +378,7 @@ export const KaSelectBox = ({
                 marginLeft: '8px',
               }}
             >
-              {getLabelForValue(optionList, selectedValue) ||
-                placeholder ||
-                'Not Selected'}
+              {selectedLabel}
             </KaText>
           </Row>
           {isOpen ? (
