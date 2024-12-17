@@ -21,6 +21,7 @@ const SelectBoxes = () => {
           { value: '1', label: 'Disabled Option2', isDisabled: true },
           { value: '2', label: 'Option 3' },
         ]}
+        showSelectedImg={true}
       />
       <KaText fontType="body/lg_400">
         Width with nesting choices with img and maxheight
@@ -30,6 +31,7 @@ const SelectBoxes = () => {
         onSelect={setSelected}
         containerStyle={{ width: '500px' }}
         maxHeight="150px"
+        showSelectedImg={true}
         optionList={[
           {
             value: '7',
