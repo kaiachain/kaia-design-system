@@ -1,6 +1,6 @@
 {
   "name": "@kaiachain/kaia-design-system",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "license": "MIT",
   "type": "module",
   "main": "dist/index.js",
@@ -62,6 +62,7 @@
   "dependencies": {
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
+    "lodash": "^4.17.21",
     "react-click-away-listener": "^2.2.3"
   }
 }
