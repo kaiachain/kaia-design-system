@@ -30,7 +30,8 @@ const StyledDropdownToggle = styled.div<{
   align-items: center;
   border-radius: 999px;
   background-color: ${themeFunc('elevation', '9')};
-  padding: 10px 14px;
+  padding: 0px 14px 0px 4px;
+  height: 40px;
 
   outline: ${({ isError }) => (isError ? '1px' : '4px')} solid;
   outline-color: ${({ isFocused, isError }) =>
@@ -141,7 +142,15 @@ const StyledFormImg = styled.img<FormImgProps>`
   display: inline-block;
   height: 20px;
   width: 20px;
+  border-radius: 50%;
   margin-right: 12px;
+`
+const StyledSelectedImg = styled.img<FormImgProps>`
+  display: inline-block;
+  height: 34px;
+  width: 34px;
+  margin-right: 8px;
+  border-radius: 50%;
 `
 export interface KaSelectBoxOptionListType {
   value: string
@@ -176,6 +185,24 @@ const getLabelForValue = (
       const childLabel = getLabelForValue(option.subItems, value)
       if (childLabel) {
         return childLabel
+      }
+    }
+  }
+  return undefined
+}
+
+const getImgForValue = (
+  options: KaSelectBoxOptionListType[],
+  value: string,
+): string | undefined => {
+  for (const option of options) {
+    if (option.value === value) {
+      return option.img
+    }
+    if (option.subItems) {
+      const childImg = getImgForValue(option.subItems, value)
+      if (childImg) {
+        return childImg
       }
     }
   }
@@ -271,7 +298,7 @@ export const KaSelectBox = ({
           <Row>
             {!isChild && isSelected && <NeonBar />}
             {indentIcon && isChild && <StyledIconindent />}
-            {src && <StyledFormImg src={src} style={{ borderRadius: '50%' }} />}
+            {src && <StyledFormImg src={src} />}
             <KaText
               fontType={isSelected ? 'body/md_700' : 'body/md_400'}
               color={isSelected ? getTheme('gray', '0') : getTheme('gray', '2')}
@@ -330,18 +357,27 @@ export const KaSelectBox = ({
             opacity: disabled ? 0.3 : 1,
           }}
         >
-          <KaText
-            fontType="body/md_600"
-            color={isError ? getTheme('danger', '6') : getTheme('gray', '0')}
-            style={{
-              width: '92%',
-              overflow: 'hidden',
-              textOverflow: 'ellipsis',
-              whiteSpace: 'nowrap',
-            }}
-          >
-            {selectedLabel}
-          </KaText>
+          <Row style={{ alignItems: 'center', flex: 1 }}>
+            {selectedValue && getImgForValue(optionList, selectedValue) && (
+              <StyledSelectedImg
+                src={getImgForValue(optionList, selectedValue)!}
+              />
+            )}
+
+            <KaText
+              fontType="body/md_600"
+              color={isError ? getTheme('danger', '6') : getTheme('gray', '0')}
+              style={{
+                width: '82%',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                whiteSpace: 'nowrap',
+                marginLeft: '8px',
+              }}
+            >
+              {selectedLabel}
+            </KaText>
+          </Row>
           {isOpen ? (
             <StyledIconChevronBottom style={{ transform: 'rotate(-180deg)' }} />
           ) : (
