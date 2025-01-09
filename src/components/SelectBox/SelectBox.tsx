@@ -134,30 +134,35 @@ const NeonBar = styled.div`
   border-radius: 6px;
   justify-content: center;
 `
-type FormImgProps = {
-  src: string
-  style?: React.CSSProperties
-}
-const StyledFormImg = styled.img<FormImgProps>`
+const StyledFormImg = styled.div`
   display: inline-block;
   height: 20px;
   width: 20px;
-  border-radius: 50%;
   margin-right: 12px;
+  overflow: hidden;
 `
-const StyledSelectedImg = styled.img<FormImgProps>`
+const StyledSelectedImg = styled.div`
   display: inline-block;
   height: 34px;
   width: 34px;
   margin-right: 8px;
-  border-radius: 50%;
+  overflow: hidden;
 `
+
+const StyledImageWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  border-radius: 50%;
+  overflow: hidden;
+`
+
 export interface KaSelectBoxOptionListType {
   value: string
   label: string
   subItems?: KaSelectBoxOptionListType[]
   isDisabled?: boolean
-  img?: string
+  img?: string | ReactElement
 }
 
 export interface KaSelectBoxProps {
@@ -194,7 +199,7 @@ const getLabelForValue = (
 const getImgForValue = (
   options: KaSelectBoxOptionListType[],
   value: string,
-): string | undefined => {
+): React.ReactNode | undefined => {
   for (const option of options) {
     if (option.value === value) {
       return option.img
@@ -226,6 +231,7 @@ export const KaSelectBox = ({
 
   const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set())
   const [selected, setSelected] = useState('')
+  const imgForValue = getImgForValue(optionList, selectedValue)
 
   const toggleExpand = (value: string) => {
     setExpandedItems((prev) => {
@@ -298,7 +304,22 @@ export const KaSelectBox = ({
           <Row>
             {!isChild && isSelected && <NeonBar />}
             {indentIcon && isChild && <StyledIconindent />}
-            {src && <StyledFormImg src={src} />}
+            {src && (
+              <StyledFormImg>
+                <StyledImageWrapper>
+                  {typeof src === 'string' ? (
+                    <img
+                      src={src}
+                      style={{
+                        objectFit: 'cover',
+                      }}
+                    />
+                  ) : (
+                    src
+                  )}
+                </StyledImageWrapper>
+              </StyledFormImg>
+            )}
             <KaText
               fontType={isSelected ? 'body/md_700' : 'body/md_400'}
               color={isSelected ? getTheme('gray', '0') : getTheme('gray', '2')}
@@ -358,10 +379,21 @@ export const KaSelectBox = ({
           }}
         >
           <Row style={{ alignItems: 'center', flex: 1 }}>
-            {selectedValue && getImgForValue(optionList, selectedValue) && (
-              <StyledSelectedImg
-                src={getImgForValue(optionList, selectedValue)!}
-              />
+            {selectedValue && imgForValue && (
+              <StyledSelectedImg>
+                <StyledImageWrapper>
+                  {typeof imgForValue === 'string' ? (
+                    <img
+                      src={imgForValue as string}
+                      style={{
+                        objectFit: 'cover',
+                      }}
+                    />
+                  ) : (
+                    imgForValue
+                  )}
+                </StyledImageWrapper>
+              </StyledSelectedImg>
             )}
 
             <KaText

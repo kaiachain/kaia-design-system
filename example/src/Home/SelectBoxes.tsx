@@ -16,7 +16,9 @@ const SelectBoxes = () => {
           {
             value: '0',
             label: 'Option 1',
-            img: 'https://square-file.qa.klaytn.net/files/profile/default.png',
+            img: (
+              <img src="https://square-file.qa.klaytn.net/files/profile/default.png" />
+            ),
           },
           { value: '1', label: 'Disabled Option2', isDisabled: true },
           { value: '2', label: 'Option 3' },
@@ -43,7 +45,9 @@ const SelectBoxes = () => {
                   {
                     value: '5',
                     label: 'More SubItem 1',
-                    img: 'https://square-file.qa.klaytn.net/files/profile/default.png',
+                    img: (
+                      <img src="https://square-file.qa.klaytn.net/files/profile/default.png" />
+                    ),
                   },
                   { value: '6', label: 'More SubItem 2' },
                 ],
