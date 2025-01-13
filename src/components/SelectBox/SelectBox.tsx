@@ -155,6 +155,7 @@ const StyledImageWrapper = styled.div`
   display: flex;
   border-radius: 50%;
   overflow: hidden;
+  object-fit: cover;
 `
 
 export interface KaSelectBoxOptionListType {
@@ -199,7 +200,7 @@ const getLabelForValue = (
 const getImgForValue = (
   options: KaSelectBoxOptionListType[],
   value: string,
-): React.ReactNode | undefined => {
+): string | ReactElement | undefined => {
   for (const option of options) {
     if (option.value === value) {
       return option.img
@@ -307,16 +308,7 @@ export const KaSelectBox = ({
             {src && (
               <StyledFormImg>
                 <StyledImageWrapper>
-                  {typeof src === 'string' ? (
-                    <img
-                      src={src}
-                      style={{
-                        objectFit: 'cover',
-                      }}
-                    />
-                  ) : (
-                    src
-                  )}
+                  {typeof src === 'string' ? <img src={src} /> : src}
                 </StyledImageWrapper>
               </StyledFormImg>
             )}
@@ -383,12 +375,7 @@ export const KaSelectBox = ({
               <StyledSelectedImg>
                 <StyledImageWrapper>
                   {typeof imgForValue === 'string' ? (
-                    <img
-                      src={imgForValue as string}
-                      style={{
-                        objectFit: 'cover',
-                      }}
-                    />
+                    <img src={imgForValue as string} />
                   ) : (
                     imgForValue
                   )}
