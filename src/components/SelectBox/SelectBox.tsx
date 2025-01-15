@@ -19,10 +19,11 @@ const StyledDropdown = styled.div`
   flex-direction: column;
 `
 
-const StyledDropdownToggle = styled.div<{
-  isError?: boolean
+type StyledDropdownToggleProps = {
   isFocused?: boolean
-}>`
+  isError?: boolean
+}
+const StyledDropdownToggle = styled.div<StyledDropdownToggleProps>`
   cursor: pointer;
   display: flex;
   flex-direction: row;
@@ -101,10 +102,11 @@ const Row = styled(View)`
   align-items: center;
 `
 
-const StyledDropdownItem = styled(View)<{
+type StyledDropdownItemProps = {
   isSelected?: boolean
   level: number
-}>`
+}
+const StyledDropdownItem = styled(View)<StyledDropdownItemProps>`
   justify-content: center;
   position: relative;
   padding: ${(props) =>

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { KaText, KaSelectBox } from '@kaiachain/kaia-design-system'
+import kaiaLogo from '../assets/kaia.svg'
 
 const SelectBoxes = () => {
   const [selected, setSelected] = useState<string>('')
@@ -16,9 +17,7 @@ const SelectBoxes = () => {
           {
             value: '0',
             label: 'Option 1',
-            img: (
-              <img src="https://square-file.qa.klaytn.net/files/profile/default.png" />
-            ),
+            img: <img src="https://dummyimage.com/100x100/000/fff" />,
           },
           { value: '1', label: 'Disabled Option2', isDisabled: true },
           { value: '2', label: 'Option 3' },
@@ -40,14 +39,12 @@ const SelectBoxes = () => {
               {
                 value: '3',
                 label: 'SubItem 1',
-                img: 'https://square-file.qa.klaytn.net/files/profile/default.png',
+                img: 'https://dummyimage.com/100x100/000/fff',
                 subItems: [
                   {
                     value: '5',
                     label: 'More SubItem 1',
-                    img: (
-                      <img src="https://square-file.qa.klaytn.net/files/profile/default.png" />
-                    ),
+                    img: <img src={kaiaLogo} />,
                   },
                   { value: '6', label: 'More SubItem 2' },
                 ],
