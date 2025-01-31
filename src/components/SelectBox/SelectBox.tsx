@@ -55,7 +55,7 @@ const StyledIconChevronBottom = styled(ChevronBottom)`
   height: 16px;
   fill: ${themeFunc('gray', '0')};
 `
-const StyledIconindent = styled(IndentDownRight)`
+const StyledIconIndent = styled(IndentDownRight)`
   transition: transform 0.2s ease-in-out;
   margin-right: 12px;
   width: 16px;
@@ -306,7 +306,7 @@ export const KaSelectBox = ({
         >
           <Row>
             {!isChild && isSelected && <NeonBar />}
-            {indentIcon && isChild && <StyledIconindent />}
+            {indentIcon && isChild && <StyledIconIndent />}
             {src && (
               <StyledFormImg>
                 <StyledImageWrapper>
