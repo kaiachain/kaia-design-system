@@ -1,6 +1,10 @@
 import styled from '@emotion/styled'
 
-import { KaButton, useKaTheme } from '@kaiachain/kaia-design-system'
+import {
+  KaButton,
+  KaSimpleButton,
+  useKaTheme,
+} from '@kaiachain/kaia-design-system'
 import { Row } from './components/Row'
 import { View } from './components/View'
 
@@ -13,6 +17,55 @@ const Buttons = () => {
   const { getTheme } = useKaTheme()
   return (
     <>
+      <Row>
+        <KaSimpleButton size="sm" type="green" onClick={() => alert('?')}>
+          Button
+        </KaSimpleButton>
+        <KaSimpleButton
+          leftIcon="check"
+          size="md"
+          type="green"
+          onClick={() => alert('?')}
+        >
+          Button
+        </KaSimpleButton>
+        <KaSimpleButton
+          leftIcon="check"
+          rightIcon="right"
+          size="sm"
+          type="gray"
+          onClick={() => alert('?')}
+        >
+          Button
+        </KaSimpleButton>
+        <KaSimpleButton
+          leftIcon="check"
+          rightIcon="right"
+          size="md"
+          type="w/b"
+          onClick={() => alert('?')}
+        >
+          Button
+        </KaSimpleButton>
+        <KaSimpleButton
+          rightIcon="check"
+          size="lg"
+          type="w/b"
+          onClick={() => alert('?')}
+        >
+          Button
+        </KaSimpleButton>
+        <KaSimpleButton
+          leftIcon="check"
+          rightIcon="right"
+          size="lg"
+          type="w/b"
+          disabled
+          onClick={() => alert('?')}
+        >
+          Button
+        </KaSimpleButton>
+      </Row>
       <Row>
         <KaButton size="sm" onClick={() => alert('?')}>
           Button
