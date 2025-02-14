@@ -1,8 +1,12 @@
-export { KaText } from './Text/Text'
-export { KaRadio } from './Radio/Radio'
-export { KaCheckBox } from './CheckBox/CheckBox'
-export { KaTextInput } from './Input/index'
-export { KaButton } from './Button/Button'
-export { KaSimpleButton } from './Button/SimpleButton'
-export { KaLabel } from './Label/Label'
-export { KaSelectBox } from './SelectBox/SelectBox'
+export { KaText, KaTextProps } from './Text/Text'
+export { KaRadio, KaRadioProps } from './Radio/Radio'
+export { KaCheckBox, KaCheckBoxProps } from './CheckBox/CheckBox'
+export { KaTextInput, KaTextInputProps } from './Input/index'
+export { KaButton, KaButtonProps } from './Button/Button'
+export { KaSimpleButton, KaSimpleButtonProps } from './Button/SimpleButton'
+export { KaLabel, KaLabelProps } from './Label/Label'
+export {
+  KaSelectBox,
+  KaSelectBoxOptionListType,
+  KaSelectBoxProps,
+} from './SelectBox/SelectBox'
