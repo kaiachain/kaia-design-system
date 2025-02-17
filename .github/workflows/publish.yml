@@ -1,29 +1,63 @@
-name: "package publishing"
+name: "Package Publishing"
 
 on:
   push:
     branches: ["main"]
 
 jobs:
-  build:
-    permissions: write-all
+  build-and-publish:
+    # 최소 권한 부여: npm publish만 필요
+    permissions:
+      contents: read
+      packages: write
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
 
-      - name: Setup Node
+    steps:
+      # 📥
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # 🚀
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 20
           registry-url: https://registry.npmjs.org/
+          cache: 'yarn'
 
-      - name: Install dependencies & build package 
-        run : |
-          yarn install && yarn build 
+      # 📦
+      - name: Install Dependencies
+        run: yarn install --frozen-lockfile
 
-      - name: publish package 
-        env: 
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+      # 🧹
+      - name: Run Linter
+        run: yarn lint
+
+      # 🧪
+      - name: Run Tests
+        run: yarn test
+
+      # ⚙️
+      - name: Build Package
+        run: yarn build
+
+      # 🚢
+      - name: Publish Package
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          npx pnpm --filter @kaiachain/kaia-design-system -r publish --publish-branch main --no-git-check --access=public
+          npx pnpm --filter @kaiachain/kaia-design-system -r publish \
+            --publish-branch main \
+            --no-git-check \
+            --access=public
+
+      # 🔔
+      - name: Notify Success
+        if: success()
+        run: echo "🎉 Package published successfully!"
+
+      # ⚠️
+      - name: Notify Failure
+        if: failure()
+        run: echo "❌ Package publishing failed!"
+
