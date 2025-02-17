@@ -1,6 +1,5 @@
 import { render, fireEvent } from '@testing-library/react'
 import { ThemeProvider } from '@emotion/react'
-import '@testing-library/jest-dom' // Extend Jest DOM matchers
 import { KaButton } from './Button'
 import { darkTheme } from '../../styles/theme'
 
