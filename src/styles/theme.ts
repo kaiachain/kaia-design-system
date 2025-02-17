@@ -26,7 +26,7 @@ export const darkTheme = {
     '8': '#FFFFFF21',
     '9': '#FFFFFF12',
     '10': '#FFFFFF0D',
-    dimmer: '#FFFFFF95',
+    dimmer: '#040404DB',
   },
   brand: {
     '1': '#F2FCCE',
@@ -151,7 +151,7 @@ export const lightTheme = {
     '8': '#04040414',
     '9': '#0404040D',
     '10': '#04040408',
-    dimmer: '#04040495',
+    dimmer: '#0404048F',
   },
   brand: {
     '1': '#607805',
