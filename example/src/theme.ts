@@ -1,3 +1,4 @@
+// @ts-expect-error it's imported from yarn lint
 import { darkTheme, lightTheme } from '@kaiachain/kaia-design-system'
 
 export const customDarkTheme = {

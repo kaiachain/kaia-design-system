@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.app.json",
+  "compilerOptions": {
+    "types": [
+      "@testing-library/jest-dom/vitest",
+      "vitest/globals",
+      "@vitest/browser/providers/playwright"
+    ],
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  },
+  "exclude": []
+}
