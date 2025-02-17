@@ -10,10 +10,12 @@ export type KaRadioProps<T> = {
   disabled?: boolean
 }
 
-const RadioInput = styled.input<any>`
+const RadioInput = styled.input<{
+  $size: 'sm' | 'md'
+}>`
   appearance: none;
-  width: ${({ size }) => (size === 'sm' ? '12px' : '16px')};
-  height: ${({ size }) => (size === 'sm' ? '12px' : '16px')};
+  width: ${({ $size }) => ($size === 'sm' ? '12px' : '16px')};
+  height: ${({ $size }) => ($size === 'sm' ? '12px' : '16px')};
   border-radius: 50%;
   border: 1px solid;
   border-color: ${themeFunc('brand', '5')};
@@ -28,7 +30,7 @@ const RadioInput = styled.input<any>`
   }
 
   &:disabled:checked {
-    border-width: ${({ size }) => (size === 'sm' ? '4px' : '5px')};
+    border-width: ${({ $size }) => ($size === 'sm' ? '4px' : '5px')};
   }
 
   &:hover:not(:disabled) {
@@ -36,7 +38,7 @@ const RadioInput = styled.input<any>`
   }
 
   &:checked:not(:disabled) {
-    border: ${({ size }) => (size === 'sm' ? '4px' : '5px')} solid;
+    border: ${({ $size }) => ($size === 'sm' ? '4px' : '5px')} solid;
     border-color: ${themeFunc('brand', '5')};
     background-color: ${themeFunc('gray', '10')};
   }
@@ -52,7 +54,7 @@ export const KaRadio = <T,>({
   return (
     <RadioInput
       disabled={disabled}
-      size={size}
+      $size={size}
       type="radio"
       readOnly
       checked={selected === value}

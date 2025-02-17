@@ -32,8 +32,9 @@ export const KaText = ({
     <StyledText
       type={fontType}
       style={{ color, textAlign: center ? 'center' : 'inherit', ...style }}
-      children={children}
       {...rest}
-    />
+    >
+      {children}
+    </StyledText>
   )
 }

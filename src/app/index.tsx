@@ -34,7 +34,13 @@ const StyledThemeProvider = styled.div`
 export const KaThemeProvider: React.FC<{
   theme: 'light' | 'dark'
   children: React.ReactNode
-}> = ({ theme, children }) => {
+}> = ({
+  theme,
+  children,
+}: {
+  theme: 'light' | 'dark'
+  children: React.ReactNode
+}) => {
   const selectedTheme = theme === 'light' ? lightTheme : darkTheme
   return (
     <StyledThemeProvider>
