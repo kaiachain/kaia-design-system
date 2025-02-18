@@ -1,4 +1,9 @@
 import { css } from '@emotion/react'
+
+const numericStyles = `
+  font-variant-numeric: lining-nums tabular-nums;
+`
+
 export const font = {
   'body/xs_400': css`
     font-size: 10px;
@@ -119,114 +124,133 @@ export const font = {
     font-family: RedHatDisplay;
     line-height: 12px;
     font-weight: 400;
+    ${numericStyles}
   `,
   'num/body/xs_700': css`
     font-size: 10px;
     font-family: RedHatDisplay;
     line-height: 12px;
     font-weight: 700;
+    ${numericStyles}
   `,
   'num/body/sm_400': css`
     font-size: 12px;
     font-family: RedHatDisplay;
     line-height: 16px;
     font-weight: 400;
+    ${numericStyles}
   `,
   'num/body/sm_600': css`
     font-size: 12px;
     font-family: RedHatDisplay;
     line-height: 16px;
     font-weight: 600;
+    ${numericStyles}
   `,
   'num/body/sm_700': css`
     font-size: 12px;
     font-family: RedHatDisplay;
     line-height: 16px;
     font-weight: 700;
+    ${numericStyles}
   `,
   'num/body/md_400': css`
     font-size: 14px;
     font-family: RedHatDisplay;
     line-height: 20px;
     font-weight: 400;
+    ${numericStyles}
   `,
   'num/body/md_600': css`
     font-size: 14px;
     font-family: RedHatDisplay;
     line-height: 20px;
     font-weight: 600;
+    ${numericStyles}
   `,
   'num/body/md_700': css`
     font-size: 14px;
     font-family: RedHatDisplay;
     line-height: 20px;
     font-weight: 700;
+    ${numericStyles}
   `,
   'num/body/lg_400': css`
     font-size: 16px;
     font-family: RedHatDisplay;
     line-height: 24px;
     font-weight: 400;
+    ${numericStyles}
   `,
   'num/body/lg_600': css`
     font-size: 16px;
     font-family: RedHatDisplay;
     line-height: 24px;
     font-weight: 600;
+    ${numericStyles}
   `,
   'num/body/lg_700': css`
     font-size: 16px;
     font-family: RedHatDisplay;
     line-height: 24px;
     font-weight: 700;
+    ${numericStyles}
   `,
   'num/body/xl_400': css`
     font-size: 20px;
     font-family: RedHatDisplay;
     line-height: 28px;
     font-weight: 400;
+    ${numericStyles}
   `,
   'num/body/xl_700': css`
     font-size: 20px;
     font-family: RedHatDisplay;
     line-height: 28px;
     font-weight: 700;
+    ${numericStyles}
   `,
   'num/title/xs_400': css`
     font-size: 20px;
     font-family: RedHatDisplay;
     line-height: 28px;
     font-weight: 400;
+    ${numericStyles}
   `,
   'num/title/xs_700': css`
     font-size: 20px;
     font-family: RedHatDisplay;
     line-height: 28px;
     font-weight: 700;
+    ${numericStyles}
   `,
   'num/title/sm_400': css`
     font-size: 24px;
     font-family: RedHatDisplay;
     line-height: 32px;
     font-weight: 400;
+    ${numericStyles}
   `,
   'num/title/sm_700': css`
     font-size: 24px;
     font-family: RedHatDisplay;
     line-height: 32px;
     font-weight: 700;
+    ${numericStyles}
   `,
   'num/title/md_700': css`
     font-size: 28px;
     font-family: RedHatDisplay;
     line-height: 36px;
     font-weight: 700;
+    ${numericStyles}
   `,
   'num/title/lg_700': css`
     font-size: 32px;
     font-family: RedHatDisplay;
     line-height: 40px;
     font-weight: 700;
+    ${numericStyles}
   `,
 }
 
