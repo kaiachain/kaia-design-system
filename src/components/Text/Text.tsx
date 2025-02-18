@@ -10,16 +10,7 @@ const StyledText = styled.div<{ type: KaFontType }>`
   line-height: normal;
   white-space: pre-wrap;
   word-break: break-word;
-  ${({ type }) => {
-    const styles = font[type]
-    if (type.startsWith('num/')) {
-      return `
-        ${styles}
-        font-variant-numeric: lining-nums tabular-nums;
-      `
-    }
-    return styles
-  }}
+  ${({ type }) => font[type]}
 `
 
 export type KaTextProps = {
