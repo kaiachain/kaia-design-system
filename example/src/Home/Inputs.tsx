@@ -25,6 +25,7 @@ const Inputs = () => {
         }}
         rightUnit="$"
       />
+      <KaTextInput inputProps={{ value: "I'm read only" }} readOnly />
       <KaTextInput
         inputProps={{
           type: 'number',
