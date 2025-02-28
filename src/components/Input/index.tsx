@@ -83,7 +83,7 @@ export interface KaTextInputProps {
     type?: 'text' | 'email' | 'password' | 'number'
     placeholder?: string
     value: string
-    onChangeText: (value: string) => void
+    onChangeText?: (value: string) => void
     onKeyDown?: (event: React.KeyboardEvent) => void
     style?: React.CSSProperties
   }
@@ -91,6 +91,7 @@ export interface KaTextInputProps {
   rightComponent?: ReactElement
   leftUnit?: string
   rightUnit?: string
+  readOnly?: boolean
   disabled?: boolean
   isError?: boolean
   containerStyle?: React.CSSProperties
@@ -107,6 +108,7 @@ export const KaTextInput = ({
     value: '',
     onChangeText: () => {},
   },
+  readOnly,
   disabled,
   isError,
   containerStyle,
@@ -146,8 +148,9 @@ export const KaTextInput = ({
             }}
             isError={isError}
             onChange={({ target: { value } }): void => {
-              onChangeText(value)
+              onChangeText?.(value)
             }}
+            readOnly={readOnly}
             disabled={disabled}
             {...inputRest}
           />
@@ -163,7 +166,7 @@ export const KaTextInput = ({
               {rightUnit}
             </KaText>
           )}
-          {inputProps.value && !disabled && (
+          {!readOnly && inputProps.value && !disabled && (
             <StyledClose
               onClick={(): void => {
                 inputProps.onChangeText?.('')
