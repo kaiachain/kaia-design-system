@@ -10,4 +10,3 @@ export {
   KaSelectBoxOptionListType,
   KaSelectBoxProps,
 } from './SelectBox/SelectBox'
-export { KaTextarea, KaTextareaProps } from './Textarea/Textarea'
