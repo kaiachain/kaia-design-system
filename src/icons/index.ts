@@ -7,6 +7,8 @@ import ChevronRight from './ChevronRight.svg'
 import ChevronTop from './ChevronTop.svg'
 import CircleInfoFilled from './CircleInfoFilled.svg'
 import CircleQuestion from './CircleQuestion.svg'
+import EyeNormal from './EyeNormal.svg'
+import EyeSlash from './EyeSlash.svg'
 import IndentDownRight from './IndentDownRight.svg'
 import Minus from './Minus.svg'
 import Paste from './Paste.svg'
@@ -24,6 +26,8 @@ export default {
   ChevronTop,
   CircleInfoFilled,
   CircleQuestion,
+  EyeNormal,
+  EyeSlash,
   IndentDownRight,
   Minus,
   Paste,
