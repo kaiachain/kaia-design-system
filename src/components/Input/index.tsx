@@ -1,9 +1,11 @@
-import { ReactElement, useState } from 'react'
+import { ReactElement, useMemo, useState } from 'react'
 import styled from '@emotion/styled'
 import { font, themeFunc } from '../../styles'
 import { KaText } from '../Text/Text'
 import { useKaTheme } from '../../hooks'
 import X from '../../icons/X.svg'
+import EyeNormal from '../../icons/EyeNormal.svg'
+import EyeSlash from '../../icons/EyeSlash.svg'
 
 interface StyledContainerProps {
   isFocused: boolean
@@ -115,7 +117,18 @@ export const KaTextInput = ({
 }: KaTextInputProps): ReactElement => {
   const { getTheme } = useKaTheme()
   const [onFocus, setOnFocus] = useState(false)
-  const { onChangeText, ...inputRest } = inputProps
+  const { type: originalType, onChangeText, ...otherInputProps } = inputProps
+
+  const [showPassword, setShowPassword] = useState(false)
+  const inputType = useMemo(() => {
+    return originalType === 'password' && showPassword ? 'text' : originalType
+  }, [originalType, showPassword])
+
+  const handleContextMenu = (e: React.MouseEvent): void => {
+    if (originalType === 'password') {
+      e.preventDefault()
+    }
+  }
 
   return (
     <StyledContainer
@@ -152,7 +165,12 @@ export const KaTextInput = ({
             }}
             readOnly={readOnly}
             disabled={disabled}
-            {...inputRest}
+            autoComplete={
+              originalType === 'password' ? 'new-password' : undefined
+            }
+            onContextMenu={handleContextMenu}
+            {...otherInputProps}
+            type={inputType}
           />
           {rightUnit && (
             <KaText
@@ -167,19 +185,47 @@ export const KaTextInput = ({
             </KaText>
           )}
           {!readOnly && inputProps.value && !disabled && (
-            <StyledClose
-              onClick={(): void => {
-                inputProps.onChangeText?.('')
-              }}
-            >
-              <X
-                style={{
-                  width: 'var(--Sizing-3, 12px)',
-                  height: 'var(--Sizing-3, 12px)',
-                }}
-                fill={getTheme('elevation', '4')}
-              />
-            </StyledClose>
+            <>
+              {inputProps.type === 'password' ? (
+                <StyledClose
+                  onClick={(): void => {
+                    setShowPassword(!showPassword)
+                  }}
+                >
+                  {showPassword ? (
+                    <EyeSlash
+                      style={{
+                        width: 'var(--Sizing-3, 12px)',
+                        height: 'var(--Sizing-3, 12px)',
+                        color: getTheme('elevation', '4'),
+                      }}
+                    />
+                  ) : (
+                    <EyeNormal
+                      style={{
+                        width: 'var(--Sizing-3, 12px)',
+                        height: 'var(--Sizing-3, 12px)',
+                        color: getTheme('elevation', '4'),
+                      }}
+                    />
+                  )}
+                </StyledClose>
+              ) : (
+                <StyledClose
+                  onClick={(): void => {
+                    inputProps.onChangeText?.('')
+                  }}
+                >
+                  <X
+                    style={{
+                      width: 'var(--Sizing-3, 12px)',
+                      height: 'var(--Sizing-3, 12px)',
+                    }}
+                    fill={getTheme('elevation', '4')}
+                  />
+                </StyledClose>
+              )}
+            </>
           )}
         </StyledInputContainer>
         {rightComponent}

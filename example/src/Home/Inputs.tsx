@@ -21,9 +21,8 @@ const Inputs = () => {
           placeholder: 'placeholder',
           value: value,
           onChangeText: setValue,
-          style: { color: 'red' },
+          style: { color: 'green' },
         }}
-        rightUnit="$"
       />
       <KaTextInput inputProps={{ value: "I'm read only" }} readOnly />
       <KaTextInput

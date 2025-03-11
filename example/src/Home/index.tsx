@@ -14,6 +14,7 @@ import Icons from './Icons'
 import Logos from './Logos'
 import Inputs from './Inputs'
 import SelectBoxes from './SelectBoxes'
+import Textareas from './Textareas'
 
 const StyledContainer = styled(Row)`
   padding: 140px 20px;
@@ -123,6 +124,10 @@ const Home = ({
         <StyledSection>
           <KaText fontType="title/lg_700">TextInput</KaText>
           <Inputs />
+        </StyledSection>
+        <StyledSection>
+          <KaText fontType="title/lg_700">Textarea</KaText>
+          <Textareas />
         </StyledSection>
 
         <StyledSection>
