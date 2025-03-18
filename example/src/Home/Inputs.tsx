@@ -14,6 +14,7 @@ const Inputs = () => {
           value: value,
           onChangeText: setValue,
         }}
+        hideX
       />
       <KaTextInput
         inputProps={{

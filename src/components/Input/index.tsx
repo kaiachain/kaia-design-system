@@ -89,6 +89,7 @@ export interface KaTextInputProps {
     onKeyDown?: (event: React.KeyboardEvent) => void
     style?: React.CSSProperties
   }
+  hideX?: boolean
   leftComponent?: ReactElement
   rightComponent?: ReactElement
   leftUnit?: string
@@ -110,6 +111,7 @@ export const KaTextInput = ({
     value: '',
     onChangeText: () => {},
   },
+  hideX = false,
   readOnly,
   disabled,
   isError,
@@ -210,7 +212,7 @@ export const KaTextInput = ({
                     />
                   )}
                 </StyledClose>
-              ) : (
+              ) : hideX ? undefined : (
                 <StyledClose
                   onClick={(): void => {
                     inputProps.onChangeText?.('')
